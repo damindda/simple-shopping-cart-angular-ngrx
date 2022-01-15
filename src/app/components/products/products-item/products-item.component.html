@@ -1,6 +1,6 @@
 <div class="product-container">
   <div class="product" *ngFor="let item of products$ | async">
-    <img src="{{item.images}}" />
+    <img src="{{item.images}}" alt="{{item.name}}" />
     <p class="product-name">{{item.name}}</p>
     <p class="product-description">{{item.description}}</p>
     <p class="product-price">{{item.price | currency:'£'}}</p>
