@@ -11,4 +11,7 @@ export class ProductSearchInputComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  getSearchedResults() {
+  }
+
 }
