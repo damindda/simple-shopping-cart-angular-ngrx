@@ -11,6 +11,8 @@ import { CartComponent } from './components/products/cart/cart.component';
 import { ProductSearchInputComponent } from './components/products/product-search-input/product-search-input.component';
 import { ProductsItemComponent } from './components/products/products-item/products-item.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
@@ -27,7 +29,8 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
