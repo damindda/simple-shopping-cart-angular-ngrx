@@ -1,3 +1,5 @@
+import { Product } from './../../../models/shopping-cart';
+import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { ProductsService } from 'src/app/services/products.service';
 
@@ -7,10 +9,12 @@ import { ProductsService } from 'src/app/services/products.service';
 })
 export class ProductsItemComponent implements OnInit {
 
+  products$!: Observable<Product[]>;
+
   constructor(private productService: ProductsService) { }
 
   ngOnInit(): void {
-      this.productService.getAllProductsData().subscribe(data=>console.log('all products data ---->', data))
+     this.products$ = this.productService.getAllProductsData()
   }
 
 }
