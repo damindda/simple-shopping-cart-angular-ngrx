@@ -1,6 +1,7 @@
 <input
   type="text"
   class="product-search-box"
-  (keyup)="getSearchedResults()"
+  (keyup)="getSearchedResults(filterProductsInput.value)"
   placeholder="search your products here"
+  #filterProductsInput
 />
