@@ -1,6 +1,6 @@
 <div class="login-page">
   <div class="login-form">
-    <h2 class="message"><span>Use</span><br/> Admin <span>or</span> User <span><br/>to login</span> </h2>
+    <h2 class="message"><span>use username</span><br/> Admin <span>or</span> User <span><br/>to login</span> </h2>
     <form [formGroup]="authform" (ngSubmit)="checkAuth()">
       <input type="text" placeholder="enter your username" formControlName="name" class="input"/>
       <button class="login-button" type="submit" [disabled]="!authform.valid">Login</button>

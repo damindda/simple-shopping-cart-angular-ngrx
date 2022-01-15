@@ -7,13 +7,19 @@ import { HeaderComponent } from './components/header/header.component';
 import { LoginComponent } from './components/login/login.component';
 import { ProductsComponent } from './components/products/products.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CartComponent } from './components/products/cart/cart.component';
+import { ProductSearchInputComponent } from './components/products/product-search-input/product-search-input.component';
+import { ProductsItemComponent } from './components/products/products-item/products-item.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     LoginComponent,
-    ProductsComponent
+    ProductsComponent,
+    CartComponent,
+    ProductSearchInputComponent,
+    ProductsItemComponent
   ],
   imports: [
     BrowserModule,
