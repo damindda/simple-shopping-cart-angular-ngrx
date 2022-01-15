@@ -1,3 +1,4 @@
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
@@ -20,6 +21,10 @@ const routes: Routes = [
       import('./modules/login/login.module').then(
         (module) => module.LoginModule
       ),
+  },
+  {
+    path: '**',
+    component: PageNotFoundComponent,
   }
 ];
 
