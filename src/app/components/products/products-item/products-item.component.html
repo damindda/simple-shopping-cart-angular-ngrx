@@ -3,7 +3,7 @@
     <img src="{{item.images}}" />
     <p class="product-name">{{item.name}}</p>
     <p class="product-description">{{item.description}}</p>
-    <p class="product-price">{{item.price}}</p>
+    <p class="product-price">{{item.price | currency:'£'}}</p>
     <button class="add-to-cart">Add to cart</button>
   </div>
 </div>
