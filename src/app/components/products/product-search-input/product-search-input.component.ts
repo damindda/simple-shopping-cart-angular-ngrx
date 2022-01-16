@@ -36,8 +36,8 @@ export class ProductSearchInputComponent implements OnInit {
       )
       .subscribe((data) => {
         this.keyword$.next(data);
-        this.store.dispatch(updateKeywordAction({ keyword: data }));
         this.store.dispatch(clearStoreDataAction());
+        this.store.dispatch(updateKeywordAction({ keyword: data }));
       });
   }
 }

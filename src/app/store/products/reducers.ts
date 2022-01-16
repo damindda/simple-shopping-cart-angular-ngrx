@@ -43,7 +43,7 @@ export const productsReducer = createReducer(
     keyword: keyword,
     status: 'loading'
   })),
-  on(updateCartDataSuccessAction, (state, { data} ) => ({
+  on(updateCartDataSuccessAction, (state, { data } ) => ({
     ...state,
     data: data,
     status: 'success'

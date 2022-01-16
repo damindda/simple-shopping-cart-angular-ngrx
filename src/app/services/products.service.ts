@@ -12,28 +12,19 @@ import { AppState, getPageCountSelector } from '../store/app.state';
 export class ProductsService {
   baseurl = environment.BASE_URL;
   pagecount$: Observable<number> = this.store.select(getPageCountSelector);
-  pagecountnew = new BehaviorSubject<number>(1);
 
   count: number = 1;
 
   constructor(private http: HttpClient, private store: Store<AppState>) {}
 
   getAllProductsData(search: string): Observable<Product[]> {
-    // this.pagecount$.subscribe((data) => {
-    //   this.count = data;
-    //   console.log('page count ------> ', this.count);
-    // });
 
     this.pagecount$
     .subscribe((data) => {
       this.count = data;
-      this.pagecountnew.next(data);
       // this.store.dispatch(updateKeywordAction({ keyword: data }));
       console.log('dadsajkhdasdasd=============>', data);
     });
-
-
-    console.log('======= this.pagecountnew ======', this.pagecountnew.value);
 
     // http://localhost:8080/products?q=computer&_page=1&_limit=20
     const url = `${this.baseurl}/products?q=${search}&_page=${this.count}&_limit=10`;

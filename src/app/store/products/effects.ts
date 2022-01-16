@@ -46,7 +46,7 @@ export class ProductEffects {
     return this.actions$.pipe(
       ofType(updateCartDataAction),
       switchMap((actions) => {
-        this.store.dispatch(clearStoreDataAction());
+        // this.store.dispatch(clearStoreDataAction());
         this.store.dispatch(startLoadingAction());
         return this.productsService.getAllProductsData(actions.keyword)
         .pipe(
