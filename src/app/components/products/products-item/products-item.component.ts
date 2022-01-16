@@ -24,25 +24,23 @@ import {
 export class ProductsItemComponent implements OnInit {
   products$: Observable<Product[]> = this.store.select(getProductsSelector);
   keyword$: Observable<string> = this.store.select(getKeywordsSelector);
-  pagecount$: Observable<number> = this.store.select(getPageCountSelector);
   count: number = 0;
   constructor(private store: Store) {}
 
   ngOnInit(): void {
-    this.loadProducts();
-    this.pagecount$.subscribe((count) => this.count = count);
+    this.loadAllProductsDetails();
   }
 
   onScrollDown() {
     this.store.dispatch(pageLoadCounterAction());
-    this.updateProducts();
+    this.getUpdatedProductsDetails();
   }
 
   onScrollUp() {
     this.store.dispatch(pageLoadCounterDownAction());
   }
 
-  loadProducts() {
+  loadAllProductsDetails() {
     this.keyword$.subscribe((searchkeyword) => {
       if (!searchkeyword) {
         console.log(' seach keyword === "" =====>', searchkeyword);
@@ -54,7 +52,7 @@ export class ProductsItemComponent implements OnInit {
     });
   }
 
-  updateProducts() {
+  getUpdatedProductsDetails() {
     this.keyword$.subscribe((searchkeyword) => {
       this.store.dispatch(getAllProductsAction({ keyword: searchkeyword }));
     });
