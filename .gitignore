@@ -2,4 +2,4 @@ node_modules
 package-lock.json
 .angular/
 .DS_Store
-	src/.DS_Store
+src/.DS_Store
