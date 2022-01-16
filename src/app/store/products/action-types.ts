@@ -9,5 +9,6 @@ export enum ProductsActionTypes {
   UPDATE_PRODUCTS = '[PRODUCTS PAGE] Update Products',
   UPDATE_PRODUCTS_SUCCESS = '[PRODUCTS PAGE] Update Products Success',
   PAGE_COUNTER = '[PAGE COUNTER] Increment Counter',
-  PAGE_COUNTER_DOWN = '[PAGE COUNTER] Decrement Counter'
+  PAGE_COUNTER_DOWN = '[PAGE COUNTER] Decrement Counter',
+  CURRENT_USER = '[USER] Current User'
 }

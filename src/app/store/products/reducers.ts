@@ -8,9 +8,11 @@ import {
   updateCartDataSuccessAction,
   updateKeywordAction,
   clearStoreDataAction,
-  pageLoadCounterDownAction
+  pageLoadCounterDownAction,
+  getCurrentUserAction
 } from './actions';
-import { Product } from 'src/app/models/shopping-cart';
+import { Product, User } from 'src/app/models/shopping-cart';
+import { state } from '@angular/animations';
 
 export interface ProductsState {
   error: any;
@@ -18,6 +20,7 @@ export interface ProductsState {
   keyword: string;
   status: 'pending' | 'loading' | 'error' | 'success';
   pagecount: number;
+  currentuser: User | null;
 }
 
 export const initialState: ProductsState = {
@@ -25,7 +28,8 @@ export const initialState: ProductsState = {
   data: [],
   keyword: '',
   status: 'pending',
-  pagecount: 1
+  pagecount: 1,
+  currentuser: null
 }
 
 
@@ -60,8 +64,13 @@ export const productsReducer = createReducer(
   on(pageLoadCounterDownAction, (state) => ({
     ...state,
     pagecount: state.pagecount - 1
+  })),
+  on(getCurrentUserAction, (state, {user: data}) => ({
+    ...state,
+    currentuser: data
   }))
 )
 export const getAllProducts = (productstate: ProductsState) => productstate.data;
 export const getPageCount = (counterstate: ProductsState) => counterstate.pagecount;
 export const getKeyword = (productstate: ProductsState) => productstate.keyword;
+export const getCurrentUserName = (counterstate: ProductsState) => counterstate.currentuser?.name?.firstName;

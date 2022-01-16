@@ -1,6 +1,8 @@
 <div class="login-page">
   <div class="login-form">
-    <h2 class="message"><span>USER LOGIN</span><br/> Admin <span>or</span> User <span><br/>credentials to login</span> </h2>
+    <h2 class="message"><span>USER LOGIN</span><br/>
+      <span>use</span><br/>
+      Admin <span>or</span> User <span><br/>credentials to login</span> </h2>
     <form [formGroup]="authform" (ngSubmit)="checkAuth()">
       <div *ngIf="submitted && formvalues['email'].errors && formvalues['email'].errors['email']" class="error-message">Please, enter valid email address.</div>
       <input type="text" placeholder="enter your email" formControlName="email" class="input" [ngClass]="{ 'is-invalid': submitted && formvalues['email'].invalid }"/>

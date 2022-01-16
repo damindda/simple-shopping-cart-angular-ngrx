@@ -1,9 +1,9 @@
   <div class="nav-container">
     <h3 class="logo">ONLINE SHOPPING</h3>
-
     <ul class="nav-right">
-      <li><button (click)="userAuth()">Login</button></li>
-      <li>Logged in as ( USER NAME)</li>
+      <li *ngIf="!isLogin"><button (click)="userAuth()">Login</button></li>
+      <li *ngIf="isLogin"><button (click)="userAuth()">Logout</button></li>
+      <li *ngIf="isLogin">Logged in as {{currentUser$ | async}}</li>
       <li>
         <button class="cart" (click)="cartClick()">
           Cart <span class="badge">3</span>

@@ -1,5 +1,9 @@
+import { Store } from '@ngrx/store';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import { User } from 'src/app/models/shopping-cart';
+import { Observable } from 'rxjs';
+import { getCurrentUserNameSelector } from 'src/app/store/app.state';
 
 @Component({
   selector: 'app-header',
@@ -7,7 +11,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  currentUser$: Observable<any> = this.store.select(getCurrentUserNameSelector);
+
+  isLogin = true;
+  constructor(private router: Router, private store: Store) { }
 
   ngOnInit(): void {
   }

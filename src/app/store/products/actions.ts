@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 import { ProductsActionTypes } from './action-types';
-import { Product } from 'src/app/models/shopping-cart';
+import { Product, User } from 'src/app/models/shopping-cart';
 
 
 export const updateKeywordAction = createAction(
@@ -42,3 +42,7 @@ export const pageLoadCounterDownAction = createAction(ProductsActionTypes.PAGE_C
 export const startLoadingAction = createAction(ProductsActionTypes.START_LOADING);
 export const stopLoadingAction = createAction(ProductsActionTypes.STOP_LOADING);
 
+export const getCurrentUserAction = createAction(
+  ProductsActionTypes.CURRENT_USER,
+  props<{ user: User }>()
+)
