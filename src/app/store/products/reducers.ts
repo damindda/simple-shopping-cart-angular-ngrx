@@ -5,19 +5,22 @@ import {
   getAllProductsErrorAction,
   pageLoadCounterAction,
   updateCartDataAction,
-  updateCartDataSuccessAction
+  updateCartDataSuccessAction,
+  updateKeywordAction
 } from './actions';
 import { Product } from 'src/app/models/shopping-cart';
 
 export interface ProductsState {
   error: any;
   data: Product[];
+  keyword: string;
   status: 'pending' | 'loading' | 'error' | 'success';
 }
 
 export const initialState: ProductsState = {
   error: null,
   data: [],
+  keyword: '',
   status: 'pending',
 }
 
@@ -31,6 +34,7 @@ export const initialCounterState: CounterState = {
 
 export const productsReducer = createReducer(
   initialState,
+  on(updateKeywordAction, (state, { keyword }) => ({...state, keyword: keyword})),
   on(getAllProductsAction, (state) => ({...state, status: 'loading' })),
   on(getAllProductsSuccessAction, (state, { data} ) => ({
     ...state,
@@ -60,4 +64,4 @@ export const counterReducer = createReducer(
 
 export const getAllProducts = (productstate: ProductsState) => productstate.data;
 export const getPageCount = (counterstate: CounterState) => counterstate.pagecount;
-
+export const getKeyword = (productstate: ProductsState) => productstate.keyword;

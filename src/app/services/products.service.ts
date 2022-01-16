@@ -17,24 +17,14 @@ export class ProductsService {
 
   constructor(private http: HttpClient, private store: Store<AppState>) {}
 
-  getAllProductsData(): Observable<Product[]> {
+  getAllProductsData(search: string): Observable<Product[]> {
     this.pagecount$.subscribe((data) => {
       this.count = data;
+      console.log('page count ------> ', this.count);
     });
 
-    const url = `${this.baseurl}/products?_page=${this.count}&_limit=20`;
-    return this.http.get<Product[]>(url);
-  }
-
-  getAllFilteredData(search: string): Observable<Product[]> {
-    console.log('getAllFilteredData', search);
-    this.pagecount$.subscribe((data) => {
-      this.count = data;
-    });
-
-    const url = `${this.baseurl}/products?q=${search}`;
-
-    console.log();
+    // http://localhost:8080/products?q=computer&_page=1&_limit=20
+    const url = `${this.baseurl}/products?q=${search}&_page=${this.count}&_limit=10`;
     return this.http.get<Product[]>(url);
   }
 }

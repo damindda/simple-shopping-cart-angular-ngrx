@@ -1,6 +1,8 @@
 export enum ProductsActionTypes {
   START_LOADING = '[LOADING] Start Loading',
   STOP_LOADING = '[LOADING] Stop Loading',
+  CLEAR_STORE_DATA = '[CLEAR DATA] Clear Products',
+  UPDATE_KEYWORD = '[KEYWORD] Update Keyword',
   GET_ALL_PRODUCTS = '[PRODUCTS PAGE] Get All Products',
   GET_ALL_PRODUCTS_SUCCESS = '[PRODUCTS PAGE] Products Load Success',
   GET_ALL_PRODUCTS_ERROR = '[PRODUCTS PAGE] Products Load Error',

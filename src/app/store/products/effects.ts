@@ -8,7 +8,8 @@ import {
   getAllProductsErrorAction,
   startLoadingAction,
   updateCartDataAction,
-  updateCartDataSuccessAction
+  updateCartDataSuccessAction,
+  clearStoreDataAction
 } from './actions';
 import { ProductsService } from 'src/app/services/products.service';
 
@@ -23,9 +24,9 @@ export class ProductEffects {
   loadProductsData$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(getAllProductsAction),
-      switchMap(() => {
+      switchMap((actions) => {
         this.store.dispatch(startLoadingAction());
-        return this.productsService.getAllProductsData()
+        return this.productsService.getAllProductsData(actions.keyword)
         .pipe(
           map((products) => getAllProductsSuccessAction({ data: products })),
           catchError(() =>
@@ -45,8 +46,9 @@ export class ProductEffects {
     return this.actions$.pipe(
       ofType(updateCartDataAction),
       switchMap((actions) => {
+        this.store.dispatch(clearStoreDataAction());
         this.store.dispatch(startLoadingAction());
-        return this.productsService.getAllFilteredData(actions.keyword)
+        return this.productsService.getAllProductsData(actions.keyword)
         .pipe(
           map((products) => updateCartDataSuccessAction({ data: products })),
           catchError(() =>
