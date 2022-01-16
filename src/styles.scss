@@ -71,10 +71,13 @@ body {
 .product-search-box {
   border: 1px solid #cecece;
   margin: 14px auto 20px auto;
-  padding: 16px;
+  padding: 16px 16px 16px 32px;
   width: 80%;
   display: flex;
   font-size: 1rem;
+  background-image: url('./assets/search.png');
+  background-position: 8px 18px;
+  background-repeat: no-repeat;
 }
 
 .product-container {
