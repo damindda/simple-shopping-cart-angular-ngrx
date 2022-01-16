@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;700;900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;700;900&display=swap");
 *,
 *::before,
 *::after {
@@ -53,11 +53,10 @@ body {
       outline: 0;
       border: 0;
       padding: 15px;
-      color: #FFFFFF;
+      color: #ffffff;
       cursor: pointer;
       font-weight: 700;
       font-size: 1rem;
-
     }
     .input {
       outline: 0;
@@ -120,6 +119,22 @@ body {
         border: 1px solid #be4d25;
         background-color: #ad190f;
       }
+    }
+  }
+}
+
+.nav-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 20px;
+
+  .nav-right {
+    display: flex;
+    flex-direction: row;
+    li {
+      list-style: none;
+      padding: 4px 8px;
     }
   }
 }

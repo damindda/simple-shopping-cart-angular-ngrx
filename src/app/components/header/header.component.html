@@ -1,13 +1,13 @@
-<nav>
-  <div class="container">
-    <ul class="navbar-left">
-      <li><h3>ONLINE SHOPPING</h3></li>
+  <div class="nav-container">
+    <h3 class="logo">ONLINE SHOPPING</h3>
+
+    <ul class="nav-right">
       <li>Logged in as ( USER NAME)</li>
       <li><button (click)="signOut()">Sign Out</button></li>
-    </ul>
-
-    <ul class="navbar-right">
-      <li><button class="cart" (click)="cartClick()"> Cart <span class="badge">3</span></button></li>
+      <li>
+        <button class="cart" (click)="cartClick()">
+          Cart <span class="badge">3</span>
+        </button>
+      </li>
     </ul>
   </div>
-</nav>
