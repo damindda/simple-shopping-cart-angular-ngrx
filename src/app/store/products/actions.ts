@@ -38,6 +38,7 @@ export const clearStoreDataAction = createAction(
 )
 
 export const pageLoadCounterAction = createAction(ProductsActionTypes.PAGE_COUNTER);
+export const pageLoadCounterDownAction = createAction(ProductsActionTypes.PAGE_COUNTER_DOWN);
 export const startLoadingAction = createAction(ProductsActionTypes.START_LOADING);
 export const stopLoadingAction = createAction(ProductsActionTypes.STOP_LOADING);
 

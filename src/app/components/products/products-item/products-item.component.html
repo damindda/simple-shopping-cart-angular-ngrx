@@ -13,7 +13,8 @@
   infiniteScroll
   [infiniteScrollDistance]="1"
   [infiniteScrollThrottle]="30"
-  (scrolled)="onScroll()"
+  (scrolled)="onScrollDown()"
+  (scrolledUp)="onScrollUp()"
 >
   <app-loading-spinner></app-loading-spinner>
 </div>

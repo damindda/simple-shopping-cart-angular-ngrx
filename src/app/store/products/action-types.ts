@@ -8,5 +8,6 @@ export enum ProductsActionTypes {
   GET_ALL_PRODUCTS_ERROR = '[PRODUCTS PAGE] Products Load Error',
   UPDATE_PRODUCTS = '[PRODUCTS PAGE] Update Products',
   UPDATE_PRODUCTS_SUCCESS = '[PRODUCTS PAGE] Update Products Success',
-  PAGE_COUNTER = '[PAGE COUNTER] Increment Counter'
+  PAGE_COUNTER = '[PAGE COUNTER] Increment Counter',
+  PAGE_COUNTER_DOWN = '[PAGE COUNTER] Decrement Counter'
 }

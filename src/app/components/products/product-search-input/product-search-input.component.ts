@@ -7,7 +7,7 @@ import {
   filter,
 } from 'rxjs';
 import { AppState } from 'src/app/store/app.state';
-import { updateCartDataAction, updateKeywordAction } from 'src/app/store/products/actions';
+import { clearStoreDataAction, updateCartDataAction, updateKeywordAction } from 'src/app/store/products/actions';
 
 @Component({
   selector: 'app-product-search-input',
@@ -37,6 +37,7 @@ export class ProductSearchInputComponent implements OnInit {
       .subscribe((data) => {
         this.keyword$.next(data);
         this.store.dispatch(updateKeywordAction({ keyword: data }));
+        this.store.dispatch(clearStoreDataAction());
       });
   }
 }

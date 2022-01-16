@@ -1,16 +1,14 @@
 import { ActionReducerMap, createFeatureSelector, createSelector } from '@ngrx/store';
 
-import { ProductsState, productsReducer, getAllProducts, getPageCount, CounterState, counterReducer, getKeyword } from './products/reducers';
+import { ProductsState, productsReducer, getAllProducts, getPageCount, getKeyword } from './products/reducers';
 
 
 export interface AppState {
-  products: ProductsState,
-  counter: CounterState
+  products: ProductsState
 }
 
 export const reducers: ActionReducerMap<AppState> = {
-  products: productsReducer,
-  counter: counterReducer
+  products: productsReducer
 };
 
 export const getProductsState = createFeatureSelector<ProductsState>('products');
@@ -25,10 +23,9 @@ export const getKeywordsSelector = createSelector(
   getKeyword
 );
 
-export const getCounterState = createFeatureSelector<CounterState>('counter');
 
 export const getPageCountSelector = createSelector(
-  getCounterState,
+  getProductsState,
   getPageCount
 );
 

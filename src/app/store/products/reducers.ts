@@ -6,7 +6,9 @@ import {
   pageLoadCounterAction,
   updateCartDataAction,
   updateCartDataSuccessAction,
-  updateKeywordAction
+  updateKeywordAction,
+  clearStoreDataAction,
+  pageLoadCounterDownAction
 } from './actions';
 import { Product } from 'src/app/models/shopping-cart';
 
@@ -15,6 +17,7 @@ export interface ProductsState {
   data: Product[];
   keyword: string;
   status: 'pending' | 'loading' | 'error' | 'success';
+  pagecount: number;
 }
 
 export const initialState: ProductsState = {
@@ -22,15 +25,9 @@ export const initialState: ProductsState = {
   data: [],
   keyword: '',
   status: 'pending',
-}
-
-export interface CounterState {
-  pagecount: number
-}
-
-export const initialCounterState: CounterState = {
   pagecount: 1
 }
+
 
 export const productsReducer = createReducer(
   initialState,
@@ -51,17 +48,20 @@ export const productsReducer = createReducer(
     data: data,
     status: 'success'
   })),
-  on(getAllProductsErrorAction, (state, { error }) => ({...state, error: error }))
-)
-
-export const counterReducer = createReducer(
-  initialCounterState,
+  on(getAllProductsErrorAction, (state, { error }) => ({...state, error: error })),
+  on(clearStoreDataAction, (state ) => ({
+    ...state,
+    pagecount: 1
+  })),
   on(pageLoadCounterAction, (state) => ({
     ...state,
     pagecount: state.pagecount + 1
+  })),
+  on(pageLoadCounterDownAction, (state) => ({
+    ...state,
+    pagecount: state.pagecount - 1
   }))
 )
-
 export const getAllProducts = (productstate: ProductsState) => productstate.data;
-export const getPageCount = (counterstate: CounterState) => counterstate.pagecount;
+export const getPageCount = (counterstate: ProductsState) => counterstate.pagecount;
 export const getKeyword = (productstate: ProductsState) => productstate.keyword;

@@ -1,5 +1,5 @@
 import { Product } from './../../../models/shopping-cart';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ProductsService } from 'src/app/services/products.service';
 import { Store } from '@ngrx/store';
@@ -12,6 +12,7 @@ import {
   clearStoreDataAction,
   getAllProductsAction,
   pageLoadCounterAction,
+  pageLoadCounterDownAction,
   updateCartDataAction,
 } from 'src/app/store/products/actions';
 
@@ -32,9 +33,13 @@ export class ProductsItemComponent implements OnInit {
     this.pagecount$.subscribe((count) => this.count = count);
   }
 
-  onScroll() {
+  onScrollDown() {
     this.store.dispatch(pageLoadCounterAction());
     this.updateProducts();
+  }
+
+  onScrollUp() {
+    this.store.dispatch(pageLoadCounterDownAction());
   }
 
   loadProducts() {
