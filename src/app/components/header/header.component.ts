@@ -15,4 +15,7 @@ export class HeaderComponent implements OnInit {
     console.log('sign out clicked');
   }
 
+  cartClick() {
+    console.log('cart clicked');
+  }
 }
