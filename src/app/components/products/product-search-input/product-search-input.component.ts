@@ -1,37 +1,45 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
 import {
   BehaviorSubject,
   debounceTime,
   distinctUntilChanged,
-  filter
+  filter,
 } from 'rxjs';
+import { AppState } from 'src/app/store/app.state';
+import { updateCartDataAction } from 'src/app/store/products/actions';
 
 @Component({
   selector: 'app-product-search-input',
   templateUrl: './product-search-input.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductSearchInputComponent implements OnInit {
-
   keyword$ = new BehaviorSubject<string>('');
 
-  constructor() { }
+  constructor(private store: Store<AppState>) {}
 
   ngOnInit(): void {
-    this.keyword$
-    .pipe(
-      filter((text) => !text || text?.length > 2),
-      debounceTime(1000),
-      distinctUntilChanged(),
-    )
-    .subscribe((data) => {
-      this.keyword$.next(data);
-      console.log('value', data);
-    });
+    this.getFilteredData();
   }
 
   getSearchedResults(text: string) {
     this.keyword$.next(text);
   }
 
+  getFilteredData() {
+    this.keyword$
+      .pipe(
+        filter((text) => !text || text?.length > 2),
+        debounceTime(1000),
+        distinctUntilChanged()
+      )
+      .subscribe((data) => {
+        this.keyword$.next(data);
+
+        if (data) {
+          this.store.dispatch(updateCartDataAction({ keyword: data }));
+        }
+      });
+  }
 }

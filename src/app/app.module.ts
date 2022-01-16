@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { LoginComponent } from './components/login/login.component';
 import { ProductsComponent } from './components/products/products.component';
+import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CartComponent } from './components/products/cart/cart.component';
 import { ProductSearchInputComponent } from './components/products/product-search-input/product-search-input.component';
@@ -16,6 +17,11 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from 'src/environments/environment';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+
+
+import { reducers } from '../app/store/app.state'
+
 
 @NgModule({
   declarations: [
@@ -26,7 +32,8 @@ import { environment } from 'src/environments/environment';
     CartComponent,
     ProductSearchInputComponent,
     ProductsItemComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    LoadingSpinnerComponent
   ],
   imports: [
     BrowserModule,
@@ -34,13 +41,14 @@ import { environment } from 'src/environments/environment';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    StoreModule.forRoot({}, {}),
+    StoreModule.forRoot(reducers),
     EffectsModule.forRoot([]),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: environment.production,
       autoPause: true,
     }),
+    InfiniteScrollModule
   ],
   providers: [],
   bootstrap: [AppComponent]
