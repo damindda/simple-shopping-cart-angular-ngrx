@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+
 
 @Component({
   selector: 'app-login',
@@ -8,20 +9,29 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  name = new FormControl('');
 
   authform = new FormGroup({
-    name: new FormControl(''),
+    email: new FormControl('', [Validators.required, Validators.email]),
   });
 
-  constructor(private router: Router) { }
+  submitted: boolean = false;
+
+  constructor(private router: Router, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
+
   }
 
   checkAuth() {
-    console.log(this.authform.value.name);
-    this.router.navigateByUrl('products');
+    this.submitted = true;
+    console.log('dsafhjbasfsdafsdjfsdf ', this.authform.value.email);
+    console.log(this.authform.value);
+    // this.router.navigateByUrl('products');
+
+  }
+
+  get formvalues() {
+    return this.authform.controls;
   }
 
 }

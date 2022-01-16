@@ -74,7 +74,7 @@ body {
   padding: 16px 16px 16px 32px;
   width: 80%;
   display: flex;
-  background-image: url('./assets/search.png');
+  background-image: url("./assets/search.png");
   background-position: 8px 18px;
   background-repeat: no-repeat;
 }
@@ -139,4 +139,13 @@ body {
       padding: 4px 8px;
     }
   }
+}
+
+.error-message {
+  color: #dc3545;
+  font-size: 0.85rem;
+  margin: 8px auto 12px auto;
+}
+.is-invalid {
+  border-color: #dc3545 !important;
 }
