@@ -29,6 +29,7 @@ export class ProductEffects {
         return this.productsService.getAllProductsData(actions.keyword)
         .pipe(
           map((products) => getAllProductsSuccessAction({ data: products })),
+          shareReplay(1),
           catchError(() =>
             of(
               getAllProductsErrorAction({

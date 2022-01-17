@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 import { ProductsActionTypes } from './action-types';
-import { Cart, Product, ProductSelection, User } from 'src/app/models/shopping-cart';
+import { Product, ProductSelection, User } from 'src/app/models/shopping-cart';
 
 
 export const updateKeywordAction = createAction(
@@ -49,6 +49,11 @@ export const getCurrentUserAction = createAction(
 
 export const addShoppingCartItemsAction = createAction(
   ProductsActionTypes.ADD_SHOPPING_CART_ITEMS,
-  props<{ shoppingcartItem: Cart[] }>()
+  props<{ shoppingCartItem: Product }>()
+)
+
+export const removeShoppingCartItemsAction = createAction(
+  ProductsActionTypes.REMOVE_SHOPPING_CART_ITEMS,
+  props<{ removeShoppingCartItem: Product }>()
 )
 

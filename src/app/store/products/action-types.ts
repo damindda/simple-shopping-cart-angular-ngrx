@@ -11,5 +11,7 @@ export enum ProductsActionTypes {
   PAGE_COUNTER = '[PAGE COUNTER] Increment Counter',
   PAGE_COUNTER_DOWN = '[PAGE COUNTER] Decrement Counter',
   CURRENT_USER = '[USER] Current User',
-  ADD_SHOPPING_CART_ITEMS = '[SHOPPING CART] Add Shopping Cart Items'
+  ADD_SHOPPING_CART_ITEMS = '[SHOPPING CART] Add Shopping Cart Items',
+  REMOVE_SHOPPING_CART_ITEMS = '[SHOPPING CART] Remove Shopping Cart Items'
+
 }

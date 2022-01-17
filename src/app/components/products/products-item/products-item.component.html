@@ -5,7 +5,7 @@
     <p class="product-name">{{ item.name }}</p>
     <p class="product-description">{{ item.description }}</p>
     <p class="product-price">{{ item.price | currency: "£" }}</p>
-    <button type="button" class="add-to-cart" (click)="addToCart( item, index)">Add to cart</button>
+    <button type="button" class="button-primary" (click)="addToCart(item)">Add to cart</button>
   </div>
 </div>
 

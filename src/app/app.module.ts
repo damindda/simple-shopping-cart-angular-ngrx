@@ -20,7 +20,8 @@ import { environment } from 'src/environments/environment';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 
-import { reducers } from '../app/store/app.state'
+import { reducers } from '../app/store/app.state';
+import { ProductsPageComponent } from './components/products/products-page/products-page.component'
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { reducers } from '../app/store/app.state'
     ProductSearchInputComponent,
     ProductsItemComponent,
     PageNotFoundComponent,
-    LoadingSpinnerComponent
+    LoadingSpinnerComponent,
+    ProductsPageComponent
   ],
   imports: [
     BrowserModule,

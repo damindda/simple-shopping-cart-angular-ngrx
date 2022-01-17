@@ -14,6 +14,7 @@ import {
   getAllProductsAction,
   pageLoadCounterAction,
   pageLoadCounterDownAction,
+  removeShoppingCartItemsAction,
   updateCartDataAction,
 } from 'src/app/store/products/actions';
 
@@ -59,7 +60,7 @@ export class ProductsItemComponent implements OnInit {
     });
   }
 
-  addToCart(item: Product, index: number) {
+  addToCart(item: Product) {
 
       console.log('ProductSelection------->', item);
 
@@ -75,7 +76,10 @@ export class ProductsItemComponent implements OnInit {
       //   quantity: number
       // }
 
-      // this.store.dispatch(addShoppingCartItemsAction({ shoppingcartItem: item }));
+      // this.store.dispatch(getCurrentUserAction({ user: element }));
+
+      this.store.dispatch(addShoppingCartItemsAction({ shoppingCartItem: item }));
   }
+
 
 }

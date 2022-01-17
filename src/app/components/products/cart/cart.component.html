@@ -1,47 +1,42 @@
-<h1>Shopping Cart</h1>
+<h2 class="header">SMART RETAIL SHOP<br />SHOPPING CART</h2>
 
-<div class="shopping-cart">
-
+<div class="shopping-cart" *ngIf="isShoppingCartVisible; else noData">
   <div class="column-labels">
-    <label class="product-image">Image</label>
-    <label class="product-details">Product</label>
-    <label class="product-price">Price</label>
-    <label class="product-removal">Remove</label>
-    <label class="product-line-price">Total</label>
+    <div>Image</div>
+    <div>Product</div>
+    <div>Price</div>
+    <div>Remove</div>
   </div>
 
-  <div class="product">
-    <div class="product-image">
-      <img src="https://s.cdpn.io/3/dingo-dog-bones.jpg">
+  <div
+    class="shopping-cart-product-container"
+    *ngFor="let item of shoppingCartItems$ | async; index as index"
+  >
+    <div class="cart-item">
+      <img src="{{ item.images }}" alt="{{ item.name }}" />
     </div>
-    <div class="product-details">
-      <div class="product-title">Dingo Dog Bones</div>
-      <p class="product-description">The best dog bones of all time. Holy crap. Your dog will be begging for these things! I got curious once and ate one myself. I'm a fan.</p>
+    <div class="cart-item product-details">
+      <p class="product-name">{{ item.name }}</p>
+      <p class="product-description">{{ item.description }}</p>
     </div>
-    <div class="product-price">12.99</div>
-    <div class="product-removal">
-      <button class="remove-product">
-        Remove
+    <div class="cart-item">{{ item.price | currency: "£" }}</div>
+    <div class="cart-item">
+      <button
+        type="button"
+        class="button-primary"
+        (click)="removeFromCart(item)"
+      >
+        Remove Item
       </button>
     </div>
-    <div class="product-line-price">25.98</div>
   </div>
-
-  <div class="totals">
-    <div class="totals-item">
-      <label>Subtotal</label>
-      <div class="totals-value" id="cart-subtotal">71.97</div>
-    </div>
-    <div class="totals-item">
-      <label>Shipping</label>
-      <div class="totals-value" id="cart-shipping">15.00</div>
-    </div>
-    <div class="totals-item totals-item-total">
-      <label>Grand Total</label>
-      <div class="totals-value" id="cart-total">90.57</div>
-    </div>
-  </div>
-
-  <button class="checkout">Checkout</button>
-
 </div>
+
+<ng-template #noData>
+  <div class="cart-item product-details">
+    <h2 class="header color-secondary">
+      No items to show in the cart, please add items...
+    </h2>
+    <a routerLink="/products">Go to Products page</a>
+  </div>
+</ng-template>

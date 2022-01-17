@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/models/shopping-cart';
 import { Observable } from 'rxjs';
-import { getCurrentUserNameSelector, getCurrentUserRoleSelector } from 'src/app/store/app.state';
+import { getCurrentUserNameSelector, getCurrentUserRoleSelector, getShoppingCartItemsLengthSelector } from 'src/app/store/app.state';
 
 @Component({
   selector: 'app-header',
@@ -13,6 +13,10 @@ export class HeaderComponent implements OnInit {
 
   currentUser$: Observable<any> = this.store.select(getCurrentUserNameSelector);
   currentUserRole$: Observable<any> = this.store.select(getCurrentUserRoleSelector);
+  shoppingCartLength$: Observable<number> = this.store.select(getShoppingCartItemsLengthSelector);
+
+
+
   isLogin = true;
   constructor(private router: Router, private store: Store) { }
 
