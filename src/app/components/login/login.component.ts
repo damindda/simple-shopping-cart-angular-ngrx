@@ -20,7 +20,7 @@ export class LoginComponent implements OnInit {
 
   submitted: boolean = false;
 
-  constructor(private router: Router, private formBuilder: FormBuilder, private http: HttpClient, private store: Store) { }
+  constructor(private store: Store) { }
 
   ngOnInit(): void {
 
@@ -28,17 +28,8 @@ export class LoginComponent implements OnInit {
 
   checkAuth() {
     this.submitted = true;
-
     const useremail: string = this.authform.value.email.toLowerCase();
-
     this.store.dispatch(checkAuthAction({ email: useremail }));
-
-    console.log(this.authform.value);
-
-    // this.router.navigateByUrl('products');
-
-
-
   }
 
   get formvalues() {

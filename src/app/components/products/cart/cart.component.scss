@@ -2,11 +2,12 @@
   display: flex;
   width: 80%;
   margin: 0 auto;
-  border-radius: 4px;
   border: 1px solid #dedede;
   flex-direction: row;
   justify-content: space-between;
   align-items: flex-start;
+  padding: 10px;
+  font-weight: 700;
 }
 
 .shopping-cart-product-container {
