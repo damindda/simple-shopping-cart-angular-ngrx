@@ -21,7 +21,8 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 
 import { reducers } from '../app/store/app.state';
-import { ProductsPageComponent } from './components/products/products-page/products-page.component'
+import { ProductsPageComponent } from './components/products/products-page/products-page.component';
+import { AdminAddProductsComponent } from './components/products/admin-add-products/admin-add-products.component'
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { ProductsPageComponent } from './components/products/products-page/produ
     ProductsItemComponent,
     PageNotFoundComponent,
     LoadingSpinnerComponent,
-    ProductsPageComponent
+    ProductsPageComponent,
+    AdminAddProductsComponent
   ],
   imports: [
     BrowserModule,

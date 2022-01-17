@@ -1,13 +1,19 @@
   <div class="nav-container">
+    <div class="top-navigation">
+      <ul>
+        <li class="user-details" *ngIf="(isLoggedIn$ | async) === true">Hello, {{currentUser$ | async}} <span>{{currentUserRole$ | async}}</span></li>
+        <li class="user-details" *ngIf="(currentUserRole$ | async) === 'ADMIN'"><a routerLink="/products/add-products-to-the-cart">Add Products to Shopping Cart</a><span>only for {{currentUserRole$ | async}}s</span></li>
+        <li *ngIf="(isLoggedIn$ | async) === false"><a routerLink="/login">Login</a></li>
+        <li *ngIf="(isLoggedIn$ | async) === true"><button class="button-primary" (click)="userSignOut()">Logout</button></li>
+      </ul>
+    </div>
+    <div class="secondary-navigation">
     <h3 class="logo"><a routerLink="/products">ONLINE SHOPPING</a></h3>
     <ul class="nav-right">
-      <li *ngIf="(isLoggedIn$ | async) === false"><a routerLink="/login">Login</a></li>
-      <li *ngIf="(isLoggedIn$ | async) === true"><button (click)="userSignOut()">Logout</button></li>
-      <li class="user-details" *ngIf="(isLoggedIn$ | async) === true">Hello, {{currentUser$ | async}} <span>{{currentUserRole$ | async}}</span></li>
-      <li class="user-details" *ngIf="(currentUserRole$ | async) === 'ADMIN'"><a routerLink="/products">Add Products to Shopping Cart</a><span>only for {{currentUserRole$ | async}}</span></li>
       <li><a class="cart" routerLink="/products/cart">Shopping Cart
         <span class="badge">{{ shoppingCartLength$ | async}}</span>
       </a>
       </li>
     </ul>
+  </div>
   </div>
