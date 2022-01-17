@@ -76,6 +76,76 @@ a {
   }
 }
 
+.input {
+  outline: 0;
+  width: 100%;
+  border: 1px solid #cecece;
+  margin: 0 0 15px;
+  padding: 15px;
+}
+
+.form-primary {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  height: 100vh;
+}
+
+.align-left {
+  align-items: flex-start;
+  justify-content: start;
+}
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.width20 {
+  width: 20%;
+  text-align: right;
+  font-size: 0.8rem;
+  padding: 20px;
+}
+.add-products-page {
+  width: 100%;
+  padding: 45px;
+  text-align: center;
+  justify-content: center;
+  .message {
+    margin: 15px 0;
+    color: #b3b3b3;
+    font-size: 1.5rem;
+    font-weight: bold;
+    span {
+      font-size: 1rem;
+      font-weight: normal;
+    }
+    a {
+      color: #4caf50;
+      text-decoration: none;
+    }
+  }
+  .login-button {
+    background-color: rgb(7, 94, 207);
+    width: 50%;
+    justify-content: center;
+    align-items: center;
+    outline: 0;
+    border: 0;
+    padding: 15px;
+    color: #ffffff;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 1rem;
+  }
+}
+
 .logo {
   a {
     text-decoration: none;
@@ -158,6 +228,26 @@ a {
   }
 }
 
+.button-secondary {
+  border: 1px solid #2d0cbd;
+  background-color: #0f4bbd;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  color: #fff;
+
+  width: 50%;
+  margin: 20px auto;
+
+  font-weight: 700;
+  font-size: 1rem;
+
+  &:hover {
+    border: 1px solid #570db8;
+    background-color: #40078b;
+  }
+}
+
 .nav-container {
   display: flex;
   flex-direction: column;
@@ -195,7 +285,6 @@ a {
         }
       }
     }
-
   }
   .secondary-navigation {
     display: flex;

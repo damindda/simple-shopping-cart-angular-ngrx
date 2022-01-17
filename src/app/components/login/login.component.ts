@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
   });
 
   submitted: boolean = false;
-
+  errorvalues: boolean = false;
   constructor(private store: Store) { }
 
   ngOnInit(): void {
@@ -28,8 +28,14 @@ export class LoginComponent implements OnInit {
 
   checkAuth() {
     this.submitted = true;
-    const useremail: string = this.authform.value.email.toLowerCase();
-    this.store.dispatch(checkAuthAction({ email: useremail }));
+
+    if(this.authform.valid) {
+      const useremail: string = this.authform.value.email.toLowerCase();
+      this.store.dispatch(checkAuthAction({ email: useremail }));
+    } else {
+      this.errorvalues = true;
+    }
+
   }
 
   get formvalues() {

@@ -3,33 +3,61 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { checkAuthAction } from 'src/app/store/products/actions';
 
 @Component({
   selector: 'app-admin-add-products',
-  templateUrl: './admin-add-products.component.html'
+  templateUrl: './admin-add-products.component.html',
 })
 export class AdminAddProductsComponent implements OnInit {
-
-  submitted:boolean = false;
-  authform = new FormGroup({
-    email: new FormControl('', [Validators.required, Validators.email]),
+  submitted: boolean = false;
+  shoppingcartform = new FormGroup({
+    name: new FormControl('', [Validators.required]),
+    description: new FormControl('', [Validators.required]),
+    price: new FormControl('', [Validators.required]),
+    discount: new FormControl('', [Validators.required]),
   });
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
-  checkAuth() {
+  submitShoppingCartItems() {
     this.submitted = true;
-    console.log(this.authform.value);
+
+    if(this.shoppingcartform.valid) {
+      console.log('form is valid');
+      const output = {
+        name: this.shoppingcartform.value.name,
+        description: this.shoppingcartform.value.description,
+        defaultImage: 'http://placeimg.com/640/480/cats',
+        images: [
+          'http://placeimg.com/640/480/cats',
+          'http://placeimg.com/640/480/cats',
+          'http://placeimg.com/640/480/cats',
+          'http://placeimg.com/640/480/cats'
+      ],
+        price: this.shoppingcartform.value.price,
+        discount: this.shoppingcartform.value.discount
+     }
+
+
+      console.log(output);
+
+    } else {
+      console.log('form is not valid');
+    }
+
+
   }
 
-  get formvalues() {
-    return this.authform.controls;
+  get shoppingcartformvalues() {
+    return this.shoppingcartform.controls;
   }
-
-
 }
