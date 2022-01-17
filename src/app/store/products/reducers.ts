@@ -120,11 +120,12 @@ export const productsReducer = createReducer(
   })
 );
 export const getAllProducts = (productstate: ProductsState) => productstate.data;
-export const getPageCount = (counterstate: ProductsState) => counterstate.pagecount;
+export const getPageCount = (productstate: ProductsState) => productstate.pagecount;
 export const getKeyword = (productstate: ProductsState) => productstate.keyword;
-export const getCurrentUserName = (counterstate: ProductsState) => counterstate.user?.name?.firstName;
-export const getCurrentUserRole = (counterstate: ProductsState) => counterstate.user?.role;
-export const getShoppingCartItems = (counterstate: ProductsState) => counterstate.shoppingcartitems;
-export const getShoppingCartItemsLength = (counterstate: ProductsState) => counterstate.shoppingcartitems.length
+export const getCurrentUserName = (productstate: ProductsState) => productstate.user?.name?.firstName;
+export const getCurrentUserRole = (productstate: ProductsState) => productstate.user?.role;
+export const getShoppingCartItems = (productstate: ProductsState) => productstate.shoppingcartitems;
+export const getShoppingCartItemsLength = (productstate: ProductsState) => productstate.shoppingcartitems.length
+export const getLoggedInStatus = (productstate: ProductsState) => productstate.isLoggedIn;
 
 

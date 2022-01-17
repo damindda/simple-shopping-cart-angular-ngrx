@@ -1,10 +1,10 @@
   <div class="nav-container">
     <h3 class="logo"><a routerLink="/products">ONLINE SHOPPING</a></h3>
     <ul class="nav-right">
-      <li *ngIf="!isLogin"><button (click)="userAuth()">Login</button></li>
-      <li *ngIf="isLogin"><button (click)="userAuth()">Logout</button></li>
-      <li class="user-details" *ngIf="isLogin">Hello, {{currentUser$ | async}} <span>{{currentUserRole$ | async}}</span></li>
-      <li *ngIf="(currentUserRole$ | async) === 'ADMIN'"><a routerLink="/products">ONLY FOR ADMINS {{currentUserRole$ | async}}</a></li>
+      <li *ngIf="(isLoggedIn$ | async) === false"><a routerLink="/login">Login</a></li>
+      <li *ngIf="(isLoggedIn$ | async) === true"><button (click)="userSignOut()">Logout</button></li>
+      <li class="user-details" *ngIf="(isLoggedIn$ | async) === true">Hello, {{currentUser$ | async}} <span>{{currentUserRole$ | async}}</span></li>
+      <li class="user-details" *ngIf="(currentUserRole$ | async) === 'ADMIN'"><a routerLink="/products">Add Products to Shopping Cart</a><span>only for {{currentUserRole$ | async}}</span></li>
       <li><a class="cart" routerLink="/products/cart">Shopping Cart
         <span class="badge">{{ shoppingCartLength$ | async}}</span>
       </a>
