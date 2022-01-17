@@ -10,6 +10,10 @@ export enum ProductsActionTypes {
   UPDATE_PRODUCTS_SUCCESS = '[PRODUCTS PAGE] Update Products Success',
   PAGE_COUNTER = '[PAGE COUNTER] Increment Counter',
   PAGE_COUNTER_DOWN = '[PAGE COUNTER] Decrement Counter',
+  CHECK_AUTH = '[USER] Check Login User Auth',
+  CHECK_AUTH_SUCCESS = '[USER] Login User Auth Success',
+  CHECK_AUTH_ERROR = '[USER] Login User Auth Error',
+  GET_ALL_USERS = '[USER] Get All Users',
   CURRENT_USER = '[USER] Current User',
   ADD_SHOPPING_CART_ITEMS = '[SHOPPING CART] Add Shopping Cart Items',
   REMOVE_SHOPPING_CART_ITEMS = '[SHOPPING CART] Remove Shopping Cart Items'

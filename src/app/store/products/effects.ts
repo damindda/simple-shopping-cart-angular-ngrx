@@ -1,7 +1,18 @@
+import { Router } from '@angular/router';
+import { User } from 'src/app/models/shopping-cart';
 import { Store } from '@ngrx/store';
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, map, of, exhaustMap, switchMap, concatMap, shareReplay } from 'rxjs';
+import {
+  catchError,
+  map,
+  of,
+  exhaustMap,
+  switchMap,
+  concatMap,
+  shareReplay,
+  tap,
+} from 'rxjs';
 import {
   getAllProductsAction,
   getAllProductsSuccessAction,
@@ -9,16 +20,23 @@ import {
   startLoadingAction,
   updateCartDataAction,
   updateCartDataSuccessAction,
-  clearStoreDataAction
+  clearStoreDataAction,
+  checkAuthAction,
+  checkAuthActionSuccessAction,
+  checkAuthErrorAction,
+  getAllUsersAction,
 } from './actions';
 import { ProductsService } from 'src/app/services/products.service';
 
 @Injectable()
 export class ProductEffects {
+  currentuserdata!: User;
+
   constructor(
     private actions$: Actions,
     private productsService: ProductsService,
-    private store: Store
+    private store: Store,
+    private router: Router
   ) {}
 
   loadProductsData$ = createEffect(() => {
@@ -26,8 +44,7 @@ export class ProductEffects {
       ofType(getAllProductsAction),
       switchMap((actions) => {
         this.store.dispatch(startLoadingAction());
-        return this.productsService.getAllProductsData(actions.keyword)
-        .pipe(
+        return this.productsService.getAllProductsData(actions.keyword).pipe(
           map((products) => getAllProductsSuccessAction({ data: products })),
           shareReplay(1),
           catchError(() =>
@@ -42,15 +59,13 @@ export class ProductEffects {
     );
   });
 
-
   loadFilteredProductsData$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(updateCartDataAction),
       switchMap((actions) => {
         // this.store.dispatch(clearStoreDataAction());
         this.store.dispatch(startLoadingAction());
-        return this.productsService.getAllProductsData(actions.keyword)
-        .pipe(
+        return this.productsService.getAllProductsData(actions.keyword).pipe(
           map((products) => updateCartDataSuccessAction({ data: products })),
           catchError(() =>
             of(
@@ -64,4 +79,44 @@ export class ProductEffects {
     );
   });
 
+  checkAuth$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(checkAuthAction),
+      exhaustMap((actions) => {
+        return this.productsService.checkAuth(actions.email).pipe(
+          map((data) => {
+            console.log(data);
+
+            data.forEach((element: any) => {
+              if (element.email.toLowerCase() === actions.email) {
+                this.currentuserdata = element;
+              }
+            });
+
+            console.log("this.currentuserdata", this.currentuserdata);
+            return checkAuthActionSuccessAction({ user: this.currentuserdata });
+          }),
+          catchError(() =>
+            of(
+              checkAuthErrorAction({
+                error: 'there is an error while getting data',
+              })
+            )
+          )
+        );
+      })
+    );
+  });
+
+  checkAuthSuccess$ = createEffect(
+    () => {
+      return this.actions$.pipe(
+        ofType(checkAuthActionSuccessAction),
+        tap(() => {
+          this.router.navigate(['/products']);
+        })
+      );
+    },
+    { dispatch: false }
+  );
 }

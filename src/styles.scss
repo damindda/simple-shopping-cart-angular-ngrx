@@ -176,6 +176,14 @@ a {
       list-style: none;
       padding: 4px 8px;
     }
+    .user-details {
+      display: flex;
+      flex-direction: column;
+      span {
+        font-size: .5rem;
+        color:#666666;
+      }
+    }
   }
 }
 

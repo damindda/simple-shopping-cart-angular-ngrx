@@ -3,9 +3,8 @@
     <ul class="nav-right">
       <li *ngIf="!isLogin"><button (click)="userAuth()">Login</button></li>
       <li *ngIf="isLogin"><button (click)="userAuth()">Logout</button></li>
-      <li *ngIf="isLogin">Logged in as {{currentUser$ | async}}</li>
-      <li *ngIf="(currentUserRole$ | async) === 'ADMIN'">ONLY FOR ADMINS {{currentUserRole$ | async}}</li>
-      <li>{{currentUserRole$ | async}}</li>
+      <li class="user-details" *ngIf="isLogin">Hello, {{currentUser$ | async}} <span>{{currentUserRole$ | async}}</span></li>
+      <li *ngIf="(currentUserRole$ | async) === 'ADMIN'"><a routerLink="/products">ONLY FOR ADMINS {{currentUserRole$ | async}}</a></li>
       <li><a class="cart" routerLink="/products/cart">Shopping Cart
         <span class="badge">{{ shoppingCartLength$ | async}}</span>
       </a>

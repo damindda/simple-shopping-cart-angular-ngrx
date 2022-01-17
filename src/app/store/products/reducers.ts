@@ -9,9 +9,11 @@ import {
   updateKeywordAction,
   clearStoreDataAction,
   pageLoadCounterDownAction,
-  getCurrentUserAction,
   addShoppingCartItemsAction,
   removeShoppingCartItemsAction,
+  checkAuthAction,
+  checkAuthActionSuccessAction,
+  getAllUsersAction,
 } from './actions';
 import { Product, User } from 'src/app/models/shopping-cart';
 import { state } from '@angular/animations';
@@ -20,10 +22,12 @@ export interface ProductsState {
   error: any;
   data: Product[];
   keyword: string;
-  status: 'pending' | 'loading' | 'error' | 'success';
+  status: 'pending' | 'loading' | 'error' | 'success' | 'checkingauth';
   pagecount: number;
-  currentuser: User | null;
+  allusers: User[];
   shoppingcartitems: Product[];
+  isLoggedIn: boolean;
+  user: User | null;
 }
 
 export const initialState: ProductsState = {
@@ -32,8 +36,10 @@ export const initialState: ProductsState = {
   keyword: '',
   status: 'pending',
   pagecount: 1,
-  currentuser: null,
+  allusers: [],
   shoppingcartitems: [],
+  isLoggedIn: false,
+  user: null
 };
 
 export const productsReducer = createReducer(
@@ -74,9 +80,20 @@ export const productsReducer = createReducer(
     ...state,
     pagecount: state.pagecount - 1,
   })),
-  on(getCurrentUserAction, (state, { user: data }) => ({
+  on(checkAuthAction, (state) => ({
     ...state,
-    currentuser: data,
+    status: 'checkingauth',
+    isLoggedIn: false
+  })),
+  on(checkAuthActionSuccessAction, (state, { user: data }) => ({
+    ...state,
+    status: 'success',
+    isLoggedIn: true,
+    user: data
+  })),
+  on(getAllUsersAction, (state, { user: data }) => ({
+    ...state,
+    allusers: data,
   })),
   on(addShoppingCartItemsAction, (state, { shoppingCartItem }) => {
     const addToShoppingCart = [...state.shoppingcartitems];
@@ -105,8 +122,8 @@ export const productsReducer = createReducer(
 export const getAllProducts = (productstate: ProductsState) => productstate.data;
 export const getPageCount = (counterstate: ProductsState) => counterstate.pagecount;
 export const getKeyword = (productstate: ProductsState) => productstate.keyword;
-export const getCurrentUserName = (counterstate: ProductsState) => counterstate.currentuser?.name?.firstName;
-export const getCurrentUserRole = (counterstate: ProductsState) => counterstate.currentuser?.role;
+export const getCurrentUserName = (counterstate: ProductsState) => counterstate.user?.name?.firstName;
+export const getCurrentUserRole = (counterstate: ProductsState) => counterstate.user?.role;
 export const getShoppingCartItems = (counterstate: ProductsState) => counterstate.shoppingcartitems;
 export const getShoppingCartItemsLength = (counterstate: ProductsState) => counterstate.shoppingcartitems.length
 

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { EffectsModule } from '@ngrx/effects';
+import { ProductEffects } from 'src/app/store/products/effects';
 import { LoginRoutingModule } from './login-routing.module';
 
 
@@ -8,7 +9,8 @@ import { LoginRoutingModule } from './login-routing.module';
   declarations: [],
   imports: [
     CommonModule,
-    LoginRoutingModule
+    LoginRoutingModule,
+    EffectsModule.forFeature([ProductEffects])
   ]
 })
 export class LoginModule { }

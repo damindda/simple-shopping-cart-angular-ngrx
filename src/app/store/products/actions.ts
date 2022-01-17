@@ -42,9 +42,24 @@ export const pageLoadCounterDownAction = createAction(ProductsActionTypes.PAGE_C
 export const startLoadingAction = createAction(ProductsActionTypes.START_LOADING);
 export const stopLoadingAction = createAction(ProductsActionTypes.STOP_LOADING);
 
-export const getCurrentUserAction = createAction(
-  ProductsActionTypes.CURRENT_USER,
+export const checkAuthAction = createAction(
+  ProductsActionTypes.CHECK_AUTH,
+  props<{ email: string }>()
+)
+
+export const checkAuthActionSuccessAction = createAction(
+  ProductsActionTypes.CHECK_AUTH_SUCCESS,
   props<{ user: User }>()
+)
+
+export const checkAuthErrorAction = createAction(
+  ProductsActionTypes.CHECK_AUTH_ERROR,
+  props<{ error: string }>()
+)
+
+export const getAllUsersAction = createAction(
+  ProductsActionTypes.GET_ALL_USERS,
+  props<{ user: User[] }>()
 )
 
 export const addShoppingCartItemsAction = createAction(
