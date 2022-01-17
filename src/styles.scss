@@ -10,8 +10,16 @@
 body {
   font-family: "Montserrat", sans-serif;
   font-size: 1rem;
+  padding-top: 100px;
 }
 
+a {
+  color: #4fcbcc;
+  text-decoration: none;
+  &:hover {
+    color: #7c290a;
+  }
+}
 .header {
   font-size: 2rem;
   padding: 12px;
@@ -76,7 +84,6 @@ body {
       color: #ca410f;
     }
   }
-
 }
 .product-search-input {
   padding: 16px 16px 16px 32px;
@@ -135,18 +142,19 @@ body {
       padding: 12px;
       color: cadetblue;
     }
-    .button-primary {
-      border: 1px solid #7c290a;
-      background-color: #ca410f;
-      padding: 10px 30px;
-      border-radius: 30px;
-      cursor: pointer;
-      color: #fff;
-      &:hover {
-        border: 1px solid #be4d25;
-        background-color: #ad190f;
-      }
-    }
+  }
+}
+
+.button-primary {
+  border: 1px solid #7c290a;
+  background-color: #ca410f;
+  padding: 10px 20px;
+  border-radius: 30px;
+  cursor: pointer;
+  color: #fff;
+  &:hover {
+    border: 1px solid #be4d25;
+    background-color: #ad190f;
   }
 }
 
@@ -155,6 +163,11 @@ body {
   flex-direction: row;
   justify-content: space-between;
   padding: 20px;
+  width: 100%;
+  position: fixed;
+  background-color: #fefefe;
+  border-bottom: 1px solid #3f0788;
+  top: 0;
 
   .nav-right {
     display: flex;
@@ -179,26 +192,18 @@ body {
   position: relative;
   border: 0;
   background: transparent;
-  span {
-    width: 24px;
-    height: 24px;
-    font-size: 16px;
-    color: #fff;
-    line-height: 24px;
-    position: absolute;
-    border-radius: 12px;
-    display: block;
-    top: 0;
-    right: -56px;
-    bottom: 0;
-    left: 0;
-    margin: auto;
-    background: #4fcbcc;
-    .badge {
-      left: 48px;
-      bottom: 48px;
-    }
-  }
+}
+
+.badge {
+  width: 24px;
+  height: 24px;
+  font-size: 16px;
+  color: #fff;
+  border-radius: 40px;
+  margin: auto;
+  background: #3f0788;
+  padding: 6px 12px;
+  margin-left: 12px;
 }
 
 button:disabled,
@@ -208,7 +213,14 @@ button[disabled] {
   color: #666666 !important;
 }
 
+.shopping-cart-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: 30px;
+  text-align: center;
+}
 
-.color-secondary{
-  color:#570db8;
+.color-secondary {
+  color: #570db8;
 }

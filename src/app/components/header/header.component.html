@@ -6,8 +6,9 @@
       <li *ngIf="isLogin">Logged in as {{currentUser$ | async}}</li>
       <li *ngIf="(currentUserRole$ | async) === 'ADMIN'">ONLY FOR ADMINS {{currentUserRole$ | async}}</li>
       <li>{{currentUserRole$ | async}}</li>
-      <li><a class="cart" routerLink="/products/cart">Cart</a>
+      <li><a class="cart" routerLink="/products/cart">Shopping Cart
         <span class="badge">{{ shoppingCartLength$ | async}}</span>
+      </a>
       </li>
     </ul>
   </div>
