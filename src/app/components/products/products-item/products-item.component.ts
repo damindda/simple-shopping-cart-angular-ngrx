@@ -1,4 +1,4 @@
-import { Product } from './../../../models/shopping-cart';
+import { Product, ProductSelection } from './../../../models/shopping-cart';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ProductsService } from 'src/app/services/products.service';
@@ -9,6 +9,7 @@ import {
   getProductsSelector,
 } from 'src/app/store/app.state';
 import {
+  addShoppingCartItemsAction,
   clearStoreDataAction,
   getAllProductsAction,
   pageLoadCounterAction,
@@ -19,7 +20,7 @@ import {
 @Component({
   selector: 'app-products-item',
   templateUrl: './products-item.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  // changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductsItemComponent implements OnInit {
   products$: Observable<Product[]> = this.store.select(getProductsSelector);
@@ -57,4 +58,24 @@ export class ProductsItemComponent implements OnInit {
       this.store.dispatch(getAllProductsAction({ keyword: searchkeyword }));
     });
   }
+
+  addToCart(item: Product, index: number) {
+
+      console.log('ProductSelection------->', item);
+
+
+
+      // export interface Cart {
+      //   id: number, // User id
+      //   products: ProductSelection[],
+      // }
+
+      // export interface ProductSelection {
+      //   id: number,
+      //   quantity: number
+      // }
+
+      // this.store.dispatch(addShoppingCartItemsAction({ shoppingcartItem: item }));
+  }
+
 }

@@ -1,6 +1,6 @@
 import { ActionReducerMap, createFeatureSelector, createSelector } from '@ngrx/store';
 
-import { ProductsState, productsReducer, getAllProducts, getPageCount, getKeyword, getCurrentUserName } from './products/reducers';
+import { ProductsState, productsReducer, getAllProducts, getPageCount, getKeyword, getCurrentUserName, getCurrentUserRole } from './products/reducers';
 
 
 export interface AppState {
@@ -32,5 +32,11 @@ export const getPageCountSelector = createSelector(
 export const getCurrentUserNameSelector = createSelector(
   getProductsState,
   getCurrentUserName
+);
+
+
+export const getCurrentUserRoleSelector = createSelector(
+  getProductsState,
+  getCurrentUserRole
 );
 

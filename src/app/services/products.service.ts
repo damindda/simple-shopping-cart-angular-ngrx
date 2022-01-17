@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, debounceTime, distinctUntilChanged, filter, Observable } from 'rxjs';
+import { BehaviorSubject, debounceTime, distinctUntilChanged, filter, Observable, share, shareReplay } from 'rxjs';
 import { Product } from '../models/shopping-cart';
 import { Store } from '@ngrx/store';
 import { AppState, getPageCountSelector } from '../store/app.state';
@@ -22,11 +22,7 @@ export class ProductsService {
     this.pagecount$
     .subscribe((data) => {
       this.count = data;
-      // this.store.dispatch(updateKeywordAction({ keyword: data }));
-      console.log('dadsajkhdasdasd=============>', data);
     });
-
-    // http://localhost:8080/products?q=computer&_page=1&_limit=20
     const url = `${this.baseurl}/products?q=${search}&_page=${this.count}&_limit=10`;
     return this.http.get<Product[]>(url);
   }

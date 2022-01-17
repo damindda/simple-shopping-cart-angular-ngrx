@@ -37,13 +37,17 @@ export class LoginComponent implements OnInit {
       // console.log('users data ---->', data);
 
       data.forEach((element: any) => {
-        // console.log('users data element---->', element.email);
+        console.log('users data element---->', element.email.toLowerCase(), useremail);
 
         if(element.email.toLowerCase() === useremail) {
           console.log('user email found--->', element);
+          const values = element;
+          localStorage.setItem('currentUser', JSON.stringify(values));
+
           this.router.navigateByUrl('products');
 
           this.store.dispatch(getCurrentUserAction({ user: element }));
+
         }
 
         return;

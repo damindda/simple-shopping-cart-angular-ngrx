@@ -1,7 +1,7 @@
 import { Store } from '@ngrx/store';
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, map, of, exhaustMap, switchMap, concatMap } from 'rxjs';
+import { catchError, map, of, exhaustMap, switchMap, concatMap, shareReplay } from 'rxjs';
 import {
   getAllProductsAction,
   getAllProductsSuccessAction,
