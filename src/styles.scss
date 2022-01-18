@@ -150,6 +150,11 @@ a {
   a {
     text-decoration: none;
     color: #3f0788;
+    text-align: center;
+    font-size: 1.5rem;
+    span{
+      font-size: 1.2rem;
+    }
     &:hover {
       color: #ca410f;
     }
@@ -157,15 +162,14 @@ a {
 }
 .product-search-input {
   padding: 16px 16px 16px 32px;
-  width: 100%;
   border: 0;
   outline: 0;
   background-image: url("./assets/search.png");
   background-position: 8px 18px;
   background-repeat: no-repeat;
   border: 1px solid #cecece;
-  margin: 14px auto 20px auto;
-  width: 80%;
+  margin: 2px auto;
+  width: 50vw;
   display: flex;
 }
 .search {
