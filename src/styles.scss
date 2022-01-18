@@ -221,14 +221,15 @@ a {
   font-size: 0.8rem;
   color: #fff;
   margin-left: 4px;
+  cursor: pointer;
 }
 
 .button-primary {
   border: 1px solid #28a745;
   background-color: #28a745;
   &:hover {
-    border: 1px solid #be4d25;
-    background-color: #ad190f;
+    border: 1px solid #2d0cbd;
+    background-color: #0f4bbd;
   }
 }
 

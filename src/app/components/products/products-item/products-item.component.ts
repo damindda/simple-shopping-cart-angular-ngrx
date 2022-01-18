@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Product } from './../../../models/shopping-cart';
 import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
@@ -9,6 +10,7 @@ import {
 } from 'src/app/store/app.state';
 import {
   addShoppingCartItemsAction,
+  clearStoreDataAction,
   getAllProductsAction,
   pageLoadCounterAction,
   pageLoadCounterDownAction,
@@ -25,7 +27,7 @@ export class ProductsItemComponent implements OnInit {
   currentUserRole$: Observable<any> = this.store.select(getCurrentUserRoleSelector);
   count: number = 0;
 
-  constructor(private store: Store) {}
+  constructor(private store: Store, private http: HttpClient) {}
 
   ngOnInit(): void {
     this.loadAllProductsDetails();
@@ -62,11 +64,17 @@ export class ProductsItemComponent implements OnInit {
 
 
   editProduct(item: Product) {
-
+    alert('have not implemented this edit feature')
   }
 
   removeProduct(item: Product) {
-
+    console.log(item);
+    this.http.delete(`http://localhost:8080/products/${item.id}`).subscribe (data =>
+    {
+      console.log('you have deleted product', item)
+      this.store.dispatch(clearStoreDataAction());
+      this.loadAllProductsDetails();
+    })
   }
 
 }

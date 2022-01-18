@@ -22,6 +22,7 @@ import {
   checkAuthAction,
   checkAuthActionSuccessAction,
   checkAuthErrorAction,
+  clearStoreDataAction,
 } from './actions';
 import { ProductsService } from 'src/app/services/products.service';
 
@@ -60,6 +61,7 @@ export class ProductEffects {
     return this.actions$.pipe(
       ofType(updateCartDataAction),
       switchMap((actions) => {
+        this.store.dispatch(clearStoreDataAction());
         this.store.dispatch(startLoadingAction());
         return this.productsService.getAllProductsData(actions.keyword).pipe(
           map((products) => updateCartDataSuccessAction({ data: products })),
