@@ -215,13 +215,26 @@ a {
   }
 }
 
+.button {
+  padding: 10px 20px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  color: #fff;
+  margin-left: 4px;
+}
+
 .button-primary {
   border: 1px solid #28a745;
   background-color: #28a745;
-  padding: 10px 20px;
-  border-radius: 4px;
-  cursor: pointer;
-  color: #fff;
+  &:hover {
+    border: 1px solid #be4d25;
+    background-color: #ad190f;
+  }
+}
+
+.button-danger {
+  border: 1px solid #910a2c;
+  background-color: #be4d25;
   &:hover {
     border: 1px solid #be4d25;
     background-color: #ad190f;

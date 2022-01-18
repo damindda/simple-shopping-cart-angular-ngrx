@@ -4,7 +4,7 @@
         <li class="user-details" *ngIf="(isLoggedIn$ | async) === true">Hello, {{currentUser$ | async}} <span>{{currentUserRole$ | async}}</span></li>
         <li class="user-details" *ngIf="(currentUserRole$ | async) === 'ADMIN'"><a routerLink="/products/add-products-to-the-cart">Add Products to Shopping Cart</a><span>only for {{currentUserRole$ | async}}s</span></li>
         <li *ngIf="(isLoggedIn$ | async) === false"><a routerLink="/login">Login</a></li>
-        <li *ngIf="(isLoggedIn$ | async) === true"><button class="button-primary" (click)="userSignOut()">Logout</button></li>
+        <li *ngIf="(isLoggedIn$ | async) === true"><button class="button button-primary" (click)="userSignOut()">Logout</button></li>
       </ul>
     </div>
     <div class="secondary-navigation">

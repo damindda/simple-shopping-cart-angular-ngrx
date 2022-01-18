@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import {
+  getCurrentUserRoleSelector,
   getKeywordsSelector,
   getProductsSelector,
 } from 'src/app/store/app.state';
@@ -21,7 +22,9 @@ import {
 export class ProductsItemComponent implements OnInit {
   products$: Observable<Product[]> = this.store.select(getProductsSelector);
   keyword$: Observable<string> = this.store.select(getKeywordsSelector);
+  currentUserRole$: Observable<any> = this.store.select(getCurrentUserRoleSelector);
   count: number = 0;
+
   constructor(private store: Store) {}
 
   ngOnInit(): void {
@@ -57,5 +60,13 @@ export class ProductsItemComponent implements OnInit {
       this.store.dispatch(addShoppingCartItemsAction({ shoppingCartItem: item }));
   }
 
+
+  editProduct(item: Product) {
+
+  }
+
+  removeProduct(item: Product) {
+
+  }
 
 }

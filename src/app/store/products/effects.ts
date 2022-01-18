@@ -9,7 +9,6 @@ import {
   of,
   exhaustMap,
   switchMap,
-  concatMap,
   shareReplay,
   tap,
 } from 'rxjs';
@@ -20,11 +19,9 @@ import {
   startLoadingAction,
   updateCartDataAction,
   updateCartDataSuccessAction,
-  clearStoreDataAction,
   checkAuthAction,
   checkAuthActionSuccessAction,
   checkAuthErrorAction,
-  getAllUsersAction,
 } from './actions';
 import { ProductsService } from 'src/app/services/products.service';
 
@@ -82,9 +79,12 @@ export class ProductEffects {
     return this.actions$.pipe(
       ofType(checkAuthAction),
       exhaustMap((actions) => {
-        return this.productsService.checkAuth()
-        .pipe(
-          map(elements => elements.filter(element => element.email.toLowerCase() === actions.email)),
+        return this.productsService.checkAuth().pipe(
+          map((elements) =>
+            elements.filter(
+              (element) => element.email.toLowerCase() === actions.email
+            )
+          ),
           map((data) => {
             const [firstelement] = data;
             return checkAuthActionSuccessAction({ user: firstelement });
@@ -105,8 +105,13 @@ export class ProductEffects {
     () => {
       return this.actions$.pipe(
         ofType(checkAuthActionSuccessAction),
-        tap(() => {
-          this.router.navigate(['/products']);
+        tap((data) => {
+          console.log('tapping user data', data);
+          if (typeof data.user !== 'undefined') {
+            this.router.navigate(['/products']);
+          } else {
+            console.log('There is an error while loading undefined data');
+          }
         })
       );
     },

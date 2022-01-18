@@ -5,7 +5,10 @@
     <p class="product-name">{{ item.name }}</p>
     <p class="product-description">{{ item.description }}</p>
     <p class="product-price">{{ item.price | currency: "£" }}</p>
-    <button type="button" class="button-primary" (click)="addToCart(item)">Add to cart</button>
+    <button type="button" class="button button-primary" (click)="addToCart(item)" *ngIf="(currentUserRole$ | async) !== 'ADMIN'">Add to cart</button>
+    <button type="button" class="button button-danger" (click)="removeProduct(item)" *ngIf="(currentUserRole$ | async) === 'ADMIN'">Remove Product</button>
+    <button type="button" class="button button-primary" (click)="editProduct(item)" *ngIf="(currentUserRole$ | async) === 'ADMIN'">Edit Product</button>
+
   </div>
 </div>
 

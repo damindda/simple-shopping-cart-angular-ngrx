@@ -1,9 +1,6 @@
-import { User } from './../../models/shopping-cart';
 import { Store } from '@ngrx/store';
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { checkAuthAction } from 'src/app/store/products/actions';
 
 
@@ -20,6 +17,7 @@ export class LoginComponent implements OnInit {
 
   submitted: boolean = false;
   errorvalues: boolean = false;
+
   constructor(private store: Store) { }
 
   ngOnInit(): void {
