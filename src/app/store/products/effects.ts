@@ -23,6 +23,8 @@ import {
   checkAuthActionSuccessAction,
   checkAuthErrorAction,
   clearStoreDataAction,
+  removeProductsAction,
+  removeProductsSuccessAction,
 } from './actions';
 import { ProductsService } from 'src/app/services/products.service';
 
@@ -119,4 +121,26 @@ export class ProductEffects {
     },
     { dispatch: false }
   );
+
+
+  adminRemoveProduct$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(removeProductsAction),
+      exhaustMap((actions) => {
+        return this.productsService.removeProduct(actions.product.id).pipe(
+          map(() => {
+            return removeProductsSuccessAction( {id: actions.product.id });
+          }),
+          catchError(() =>
+            of(
+              checkAuthErrorAction({
+                error: 'there is an error while getting data',
+              })
+            )
+          )
+        );
+      })
+    );
+  });
+
 }

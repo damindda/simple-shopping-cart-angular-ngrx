@@ -14,6 +14,7 @@ import {
   getAllProductsAction,
   pageLoadCounterAction,
   pageLoadCounterDownAction,
+  removeProductsAction,
   updateCartDataAction,
 } from 'src/app/store/products/actions';
 
@@ -68,13 +69,7 @@ export class ProductsItemComponent implements OnInit {
   }
 
   removeProduct(item: Product) {
-    console.log(item);
-    this.http.delete(`http://localhost:8080/products/${item.id}`).subscribe (data =>
-    {
-      console.log('you have deleted product', item)
-      this.store.dispatch(clearStoreDataAction());
-      this.loadAllProductsDetails();
-    })
+    this.store.dispatch(removeProductsAction({ product: item }));
   }
 
 }

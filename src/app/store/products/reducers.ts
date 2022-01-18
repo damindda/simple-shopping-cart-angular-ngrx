@@ -14,6 +14,8 @@ import {
   checkAuthAction,
   checkAuthActionSuccessAction,
   getAllUsersAction,
+  removeProductsAction,
+  removeProductsSuccessAction,
 } from './actions';
 import { Product, User } from 'src/app/models/shopping-cart';
 import { state } from '@angular/animations';
@@ -117,7 +119,20 @@ export const productsReducer = createReducer(
       ...state,
       shoppingcartitems: [...filterInTheCart],
     };
+  }),
+  on(removeProductsAction, (state, { product }) => ({
+    ...state
+  })),
+  on(removeProductsSuccessAction, (state, { id }) => {
+    const filteredData = state.data.filter(
+      (item: Product) => item.id !== id
+    );
+    return {
+      ...state,
+      data: [...filteredData],
+    };
   })
+
 );
 export const getAllProducts = (productstate: ProductsState) => productstate.data;
 export const getPageCount = (productstate: ProductsState) => productstate.pagecount;

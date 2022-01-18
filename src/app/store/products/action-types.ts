@@ -16,6 +16,8 @@ export enum ProductsActionTypes {
   GET_ALL_USERS = '[USER] Get All Users',
   CURRENT_USER = '[USER] Current User',
   ADD_SHOPPING_CART_ITEMS = '[SHOPPING CART] Add Shopping Cart Items',
+  ADMIN_REMOVE_PRODUCT = '[ADMIN] Remove Product Item',
+  ADMIN_REMOVE_PRODUCT_SUCCESS = '[ADMIN] Remove Product Item',
   REMOVE_SHOPPING_CART_ITEMS = '[SHOPPING CART] Remove Shopping Cart Items'
 
 }

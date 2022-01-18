@@ -31,4 +31,15 @@ export class ProductsService {
   checkAuth(): Observable<User[]> {
     return this.http.get<User[]>('http://localhost:8080/users')
   }
+
+  removeProduct(id: number): Observable<Product> {
+      return this.http.delete<Product>(`http://localhost:8080/products/${id}`);
+
+    //     .subscribe (data =>
+    // {
+    //   console.log('you have deleted product', item)
+    //   this.store.dispatch(clearStoreDataAction());
+    //   this.loadAllProductsDetails();
+    // })
+  }
 }
