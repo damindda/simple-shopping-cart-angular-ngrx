@@ -28,32 +28,7 @@ export class ProductsService {
     return this.http.get<Product[]>(url);
   }
 
-
-  // checkAuth(email: string): Observable<User> {
-
-  //   console.log('users email data  from checkAuth service---->', email);
-  //      this.http.get<User[]>('http://localhost:8080/users').subscribe((data: any) => {
-  //     // console.log('users data ---->', data);
-
-  //     data.forEach((element: any) => {
-  //       // console.log('users data element---->', element.email.toLowerCase(), email);
-
-  //       if(element.email.toLowerCase() === email) {
-  //         console.log('user email found--->', element.id);
-
-  //         this.elementid = element.id;
-  //       }
-
-
-  //     });
-  //   })
-
-  //   return this.http.get<User>(`http://localhost:8080/users/${this.elementid}`);
-
-  // }
-
-
-  checkAuth(email: string): Observable<User[]> {
+  checkAuth(): Observable<User[]> {
     return this.http.get<User[]>('http://localhost:8080/users')
   }
 }

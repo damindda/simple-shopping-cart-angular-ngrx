@@ -4,6 +4,7 @@ import { AdminAddProductsComponent } from 'src/app/components/products/admin-add
 import { CartComponent } from 'src/app/components/products/cart/cart.component';
 import { ProductsPageComponent } from 'src/app/components/products/products-page/products-page.component';
 import { ProductsComponent } from 'src/app/components/products/products.component';
+import { AuthGuard } from 'src/app/router-guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -25,7 +26,8 @@ const routes: Routes = [
       },
       {
         path: 'add-products-to-the-cart',
-        component: AdminAddProductsComponent
+        component: AdminAddProductsComponent,
+        canActivate: [AuthGuard]
       }
     ]
   },

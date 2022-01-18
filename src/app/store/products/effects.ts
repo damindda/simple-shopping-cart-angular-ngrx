@@ -63,7 +63,6 @@ export class ProductEffects {
     return this.actions$.pipe(
       ofType(updateCartDataAction),
       switchMap((actions) => {
-        // this.store.dispatch(clearStoreDataAction());
         this.store.dispatch(startLoadingAction());
         return this.productsService.getAllProductsData(actions.keyword).pipe(
           map((products) => updateCartDataSuccessAction({ data: products })),
@@ -83,18 +82,13 @@ export class ProductEffects {
     return this.actions$.pipe(
       ofType(checkAuthAction),
       exhaustMap((actions) => {
-        return this.productsService.checkAuth(actions.email).pipe(
+        return this.productsService.checkAuth()
+        .pipe(
+          map(elements => elements.filter(element => element.email.toLowerCase() === actions.email)),
           map((data) => {
-            console.log(data);
-
-            data.forEach((element: any) => {
-              if (element.email.toLowerCase() === actions.email) {
-                this.currentuserdata = element;
-              }
-            });
-
-            console.log("this.currentuserdata", this.currentuserdata);
-            return checkAuthActionSuccessAction({ user: this.currentuserdata });
+            console.log('after mapped data filtered data ======>', data);
+            const [firstelement] = data;
+            return checkAuthActionSuccessAction({ user: firstelement });
           }),
           catchError(() =>
             of(

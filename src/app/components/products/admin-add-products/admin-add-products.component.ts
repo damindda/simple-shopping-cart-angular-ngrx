@@ -1,3 +1,4 @@
+import { Product } from 'src/app/models/shopping-cart';
 import { Component, OnInit } from '@angular/core';
 
 import { Store } from '@ngrx/store';
@@ -24,7 +25,7 @@ export class AdminAddProductsComponent implements OnInit {
     discount: new FormControl('', [Validators.required]),
   });
 
-  constructor() {}
+  constructor(private http: HttpClient) {}
 
   ngOnInit(): void {}
 
@@ -49,6 +50,11 @@ export class AdminAddProductsComponent implements OnInit {
 
 
       console.log(output);
+
+
+      this.http.post<Product>('http://localhost:8080/products', output).subscribe(data => {
+        console.log('this is post data -----> ', data)
+    })
 
     } else {
       console.log('form is not valid');
