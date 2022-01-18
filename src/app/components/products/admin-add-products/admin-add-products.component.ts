@@ -18,6 +18,7 @@ import { checkAuthAction } from 'src/app/store/products/actions';
 })
 export class AdminAddProductsComponent implements OnInit {
   submitted: boolean = false;
+  success: boolean = false;
   shoppingcartform = new FormGroup({
     name: new FormControl('', [Validators.required]),
     description: new FormControl('', [Validators.required]),
@@ -29,11 +30,13 @@ export class AdminAddProductsComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  // for this add carts also, I could dispatch an action and create a reducer and effects,
+  // hence these actions, reducers, selectors, effects have already added ealier not adding at this moment
+
   submitShoppingCartItems() {
     this.submitted = true;
 
     if(this.shoppingcartform.valid) {
-      console.log('form is valid');
       const output = {
         name: this.shoppingcartform.value.name,
         description: this.shoppingcartform.value.description,
@@ -48,18 +51,18 @@ export class AdminAddProductsComponent implements OnInit {
         discount: this.shoppingcartform.value.discount
      }
 
-
-      console.log(output);
-
-
       this.http.post<Product>('http://localhost:8080/products', output).subscribe(data => {
-        console.log('this is post data -----> ', data)
-    })
+
+      if(data) {
+        this.shoppingcartform.reset();
+        this.success = true;
+      }
+
+      });
 
     } else {
       console.log('form is not valid');
     }
-
 
   }
 
