@@ -17,13 +17,10 @@ export class LoadingSpinnerComponent implements OnInit {
 
   ngOnInit(): void {
     this.products$.subscribe(data => {
-      console.log(data.length);
       if(data.length > 0) {
         this.productlength = true;
-        console.log('true', this.productlength);
       } else {
         this.productlength = false;
-        console.log('false', this.productlength);
       }
     });
   }

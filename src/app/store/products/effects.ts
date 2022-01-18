@@ -86,7 +86,6 @@ export class ProductEffects {
         .pipe(
           map(elements => elements.filter(element => element.email.toLowerCase() === actions.email)),
           map((data) => {
-            console.log('after mapped data filtered data ======>', data);
             const [firstelement] = data;
             return checkAuthActionSuccessAction({ user: firstelement });
           }),

@@ -28,12 +28,10 @@ export const getPageCountSelector = createSelector(
   getPageCount
 );
 
-
 export const getCurrentUserNameSelector = createSelector(
   getProductsState,
   getCurrentUserName
 );
-
 
 export const getCurrentUserRoleSelector = createSelector(
   getProductsState,

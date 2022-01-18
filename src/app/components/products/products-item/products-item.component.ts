@@ -1,27 +1,22 @@
-import { Product, ProductSelection } from './../../../models/shopping-cart';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { ProductsService } from 'src/app/services/products.service';
+import { Product } from './../../../models/shopping-cart';
+import { Observable } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import {
   getKeywordsSelector,
-  getPageCountSelector,
   getProductsSelector,
 } from 'src/app/store/app.state';
 import {
   addShoppingCartItemsAction,
-  clearStoreDataAction,
   getAllProductsAction,
   pageLoadCounterAction,
   pageLoadCounterDownAction,
-  removeShoppingCartItemsAction,
   updateCartDataAction,
 } from 'src/app/store/products/actions';
 
 @Component({
   selector: 'app-products-item',
-  templateUrl: './products-item.component.html',
-  // changeDetection: ChangeDetectionStrategy.OnPush,
+  templateUrl: './products-item.component.html'
 })
 export class ProductsItemComponent implements OnInit {
   products$: Observable<Product[]> = this.store.select(getProductsSelector);
@@ -45,10 +40,8 @@ export class ProductsItemComponent implements OnInit {
   loadAllProductsDetails() {
     this.keyword$.subscribe((searchkeyword) => {
       if (!searchkeyword) {
-        console.log(' seach keyword === "" =====>', searchkeyword);
         this.store.dispatch(getAllProductsAction({ keyword: searchkeyword }));
       } else {
-        console.log(' seach keyword === keyword =====>', searchkeyword);
         this.store.dispatch(updateCartDataAction({ keyword: searchkeyword }));
       }
     });
@@ -61,23 +54,6 @@ export class ProductsItemComponent implements OnInit {
   }
 
   addToCart(item: Product) {
-
-      console.log('ProductSelection------->', item);
-
-
-
-      // export interface Cart {
-      //   id: number, // User id
-      //   products: ProductSelection[],
-      // }
-
-      // export interface ProductSelection {
-      //   id: number,
-      //   quantity: number
-      // }
-
-      // this.store.dispatch(getCurrentUserAction({ user: element }));
-
       this.store.dispatch(addShoppingCartItemsAction({ shoppingCartItem: item }));
   }
 

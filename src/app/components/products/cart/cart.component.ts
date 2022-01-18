@@ -20,10 +20,8 @@ export class CartComponent implements OnInit {
 
     this.shoppingCartItems$.subscribe(data => {
       if(data.length === 0) {
-        console.log('shoppingCartItems$ is less than 0');
         this.isShoppingCartVisible = false;
       } else {
-        console.log('shoppingCartItems$ is grater than 0');
         this.isShoppingCartVisible = true;
       }
     })

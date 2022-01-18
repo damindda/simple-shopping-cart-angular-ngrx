@@ -1,24 +1,21 @@
 import { Product } from 'src/app/models/shopping-cart';
 import { Component, OnInit } from '@angular/core';
-
-import { Store } from '@ngrx/store';
 import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router';
 import {
-  FormBuilder,
   FormControl,
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { checkAuthAction } from 'src/app/store/products/actions';
 
 @Component({
   selector: 'app-admin-add-products',
   templateUrl: './admin-add-products.component.html',
 })
 export class AdminAddProductsComponent implements OnInit {
+
   submitted: boolean = false;
   success: boolean = false;
+
   shoppingcartform = new FormGroup({
     name: new FormControl('', [Validators.required]),
     description: new FormControl('', [Validators.required]),
@@ -30,7 +27,7 @@ export class AdminAddProductsComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  // for this add carts also, I could dispatch an action and create a reducer and effects,
+  // for this particular add carts also, I could dispatch an action and create a reducer and effects,
   // hence these actions, reducers, selectors, effects have already added ealier not adding at this moment
 
   submitShoppingCartItems() {

@@ -1,7 +1,6 @@
 import { Store } from '@ngrx/store';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { User } from 'src/app/models/shopping-cart';
 import { Observable } from 'rxjs';
 import { getCurrentUserNameSelector, getCurrentUserRoleSelector, getLoggedInStatusSelector, getShoppingCartItemsLengthSelector } from 'src/app/store/app.state';
 
@@ -15,9 +14,6 @@ export class HeaderComponent implements OnInit {
   currentUserRole$: Observable<any> = this.store.select(getCurrentUserRoleSelector);
   shoppingCartLength$: Observable<number> = this.store.select(getShoppingCartItemsLengthSelector);
   isLoggedIn$: Observable<boolean> = this.store.select(getLoggedInStatusSelector);
-
-
-  isLogin = true;
   constructor(private router: Router, private store: Store) { }
 
   ngOnInit(): void {
@@ -28,7 +24,4 @@ export class HeaderComponent implements OnInit {
     this.router.navigateByUrl('login');
   }
 
-  cartClick() {
-    console.log('cart clicked');
-  }
 }
