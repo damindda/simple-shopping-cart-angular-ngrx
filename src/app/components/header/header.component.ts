@@ -1,12 +1,13 @@
 import { Store } from '@ngrx/store';
 import { Router } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { getCurrentUserNameSelector, getCurrentUserRoleSelector, getLoggedInStatusSelector, getShoppingCartItemsLengthSelector } from 'src/app/store/app.state';
 
 @Component({
   selector: 'app-header',
-  templateUrl: './header.component.html'
+  templateUrl: './header.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HeaderComponent implements OnInit {
 
