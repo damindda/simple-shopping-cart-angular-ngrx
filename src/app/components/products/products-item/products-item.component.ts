@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Product } from './../../../models/shopping-cart';
+import { Cart, Product, ProductSelection, ProductSelectionNew } from './../../../models/shopping-cart';
 import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
@@ -20,12 +20,14 @@ import {
 
 @Component({
   selector: 'app-products-item',
-  templateUrl: './products-item.component.html'
+  templateUrl: './products-item.component.html',
 })
 export class ProductsItemComponent implements OnInit {
   products$: Observable<Product[]> = this.store.select(getProductsSelector);
   keyword$: Observable<string> = this.store.select(getKeywordsSelector);
-  currentUserRole$: Observable<any> = this.store.select(getCurrentUserRoleSelector);
+  currentUserRole$: Observable<any> = this.store.select(
+    getCurrentUserRoleSelector
+  );
   count: number = 0;
 
   constructor(private store: Store, private http: HttpClient) {}
@@ -60,16 +62,50 @@ export class ProductsItemComponent implements OnInit {
   }
 
   addToCart(item: Product) {
-      this.store.dispatch(addShoppingCartItemsAction({ shoppingCartItem: item }));
+
+    const newItem: Cart = {
+      id: item.id,
+      products: [
+        {
+          id: item.id,
+          quantity: 1,
+        },
+      ],
+    };
+
+    const newProductSelection: ProductSelection = {
+      id: item.id,
+      quantity: 1,
+    }
+
+    // console.log('newItem', newItem);
+    // console.log('item', item);
+    // console.log('newProductSelection', newProductSelection);
+
+    const newItemOne: ProductSelectionNew = {
+      id: item.id,
+      name: item.name,
+      images: item.defaultImage,
+      price: item.price,
+      quantity: 1,
+    };
+
+    const quantity = {
+      qty: 1
+    }
+
+    const newItemTwo: Product = {...item, ...quantity};
+
+    console.log('newItemTwo', newItemTwo);
+
+    this.store.dispatch(addShoppingCartItemsAction({ shoppingCartItem: newItemTwo }));
   }
 
-
   editProduct(item: Product) {
-    alert('have not implemented this edit feature')
+    alert('have not implemented this edit feature');
   }
 
   removeProduct(item: Product) {
     this.store.dispatch(removeProductsAction({ product: item }));
   }
-
 }

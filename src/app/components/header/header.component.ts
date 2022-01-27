@@ -15,6 +15,7 @@ export class HeaderComponent implements OnInit {
   currentUserRole$: Observable<any> = this.store.select(getCurrentUserRoleSelector);
   shoppingCartLength$: Observable<number> = this.store.select(getShoppingCartItemsLengthSelector);
   isLoggedIn$: Observable<boolean> = this.store.select(getLoggedInStatusSelector);
+
   constructor(private router: Router, private store: Store) { }
 
   ngOnInit(): void {
@@ -22,6 +23,7 @@ export class HeaderComponent implements OnInit {
 
 
   userSignOut() {
+    localStorage.clear();
     this.router.navigateByUrl('login');
   }
 

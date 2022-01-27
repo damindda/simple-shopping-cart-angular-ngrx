@@ -47,7 +47,7 @@ export const checkAuthAction = createAction(
   props<{ email: string }>()
 )
 
-export const checkAuthActionSuccessAction = createAction(
+export const checkAuthSuccessAction = createAction(
   ProductsActionTypes.CHECK_AUTH_SUCCESS,
   props<{ user: User }>()
 )

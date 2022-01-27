@@ -5,6 +5,8 @@
     <div>Image</div>
     <div>Product</div>
     <div>Price</div>
+    <div>Quantity</div>
+    <div>Sub Total</div>
     <div>Remove</div>
   </div>
 
@@ -20,6 +22,8 @@
       <p class="product-description">{{ item.description }}</p>
     </div>
     <div class="cart-item">{{ item.price | currency: "£" }}</div>
+    <div class="cart-item"><app-cart-counter [item]="item"></app-cart-counter></div>
+    <div class="cart-item">{{ item.price | currency: "£" }}</div>
     <div class="cart-item">
       <button
         type="button"
@@ -30,6 +34,11 @@
       </button>
     </div>
   </div>
+
+  <div>
+    <h2 class="header text-right">Sum : {{shoppingCartSum$ | async | currency: "£"}}</h2>
+  </div>
+
 </div>
 
 <ng-template #noData>

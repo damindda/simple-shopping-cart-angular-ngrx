@@ -20,7 +20,7 @@ import {
   updateCartDataAction,
   updateCartDataSuccessAction,
   checkAuthAction,
-  checkAuthActionSuccessAction,
+  checkAuthSuccessAction,
   checkAuthErrorAction,
   clearStoreDataAction,
   removeProductsAction,
@@ -91,7 +91,12 @@ export class ProductEffects {
           ),
           map((data) => {
             const [firstelement] = data;
-            return checkAuthActionSuccessAction({ user: firstelement });
+            if (typeof firstelement !== 'undefined') {
+              return checkAuthSuccessAction({ user: firstelement });
+            } else {
+              return checkAuthErrorAction({error: "there is an error"});
+            }
+
           }),
           catchError(() =>
             of(
@@ -108,15 +113,19 @@ export class ProductEffects {
   checkAuthSuccess$ = createEffect(
     () => {
       return this.actions$.pipe(
-        ofType(checkAuthActionSuccessAction),
+        ofType(checkAuthSuccessAction),
         tap((data) => {
-          console.log('tapping user data', data);
-          if (typeof data.user !== 'undefined') {
-            this.router.navigate(['/products']);
-          } else {
-            console.log('There is an error while loading undefined data');
-          }
-        })
+          localStorage.clear();
+          localStorage.setItem('userData', JSON.stringify(data.user));
+          this.router.navigate(['/products']);
+        }),
+        catchError(() =>
+        of(
+          checkAuthErrorAction({
+            error: 'there is an error while getting data',
+          })
+        )
+      )
       );
     },
     { dispatch: false }

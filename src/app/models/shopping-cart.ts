@@ -6,6 +6,7 @@ export interface Product {
   images: string[],
   price: number,
   discount: number,
+  qty?: number
 };
 
 export interface User {
@@ -39,3 +40,11 @@ export interface ProductSelection {
   id: number,
   quantity: number
 }
+
+export interface ProductSelectionNew {
+  id: number,
+  name: string,
+  images: string,
+  price: number,
+  quantity: number,
+};

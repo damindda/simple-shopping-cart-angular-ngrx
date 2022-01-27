@@ -9,6 +9,13 @@
     <button type="button" class="button button-danger" (click)="removeProduct(item)" *ngIf="(currentUserRole$ | async) === 'ADMIN'">Remove Product</button>
     <button type="button" class="button button-primary" (click)="editProduct(item)" *ngIf="(currentUserRole$ | async) === 'ADMIN'">Edit Product</button>
 
+    <button
+    accessControl
+    moduleType="Users"
+    accessType="create_action"
+  > +
+</button>
+
   </div>
 </div>
 

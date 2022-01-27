@@ -1,4 +1,27 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;700;900&display=swap");
+
+$base-color-green: #4fcbcc;
+$base-color-red: #7c290a;
+$base-color-purple: #3f0788;
+$base-color-purple-dark: #570db8;
+$base-color-purple-dark-20: #40078b;
+
+$base-color-blue: #0f4bbd;
+$base-color-blue-dark: #2d0cbd;
+$base-color-blue-light: #0f4bbd;
+
+$base-color-white: #ffffff;
+
+$secondary-color-grey-light: #cecece;
+$secondary-color-grey-light-50: #fefefe;
+$secondary-color-grey-light-30: #f2f2f2;
+$secondary-color-grey-dark: #b3b3b3;
+$secondary-color-grey-dark-50: #666666;
+
+$secondary-color-danger: #dc3545;
+$secondary-color-danger-dark: #ca410f;
+$secondary-color-success: #28a745;
+
 *,
 *::before,
 *::after {
@@ -14,12 +37,13 @@ body {
 }
 
 a {
-  color: #4fcbcc;
+  color: $base-color-green;
   text-decoration: none;
   &:hover {
-    color: #7c290a;
+    color: $base-color-red;
   }
 }
+
 .header {
   font-size: 2rem;
   padding: 12px;
@@ -37,11 +61,11 @@ a {
     max-width: 50%;
     padding: 45px;
     text-align: center;
-    border: 1px solid #cecece;
+    border: 1px solid $secondary-color-grey-light;
     justify-content: center;
     .message {
       margin: 15px 0;
-      color: #b3b3b3;
+      color: $secondary-color-grey-dark;
       font-size: 1.5rem;
       font-weight: bold;
       span {
@@ -49,19 +73,19 @@ a {
         font-weight: normal;
       }
       a {
-        color: #4caf50;
+        color: $secondary-color-success;
         text-decoration: none;
       }
     }
     .login-button {
-      background-color: rgb(7, 94, 207);
+      background-color: $base-color-blue;
       width: 50%;
       justify-content: center;
       align-items: center;
       outline: 0;
       border: 0;
       padding: 15px;
-      color: #ffffff;
+      color: $base-color-white;
       cursor: pointer;
       font-weight: 700;
       font-size: 1rem;
@@ -69,7 +93,7 @@ a {
     .input {
       outline: 0;
       width: 100%;
-      border: 1px solid #cecece;
+      border: 1px solid $secondary-color-grey-light;
       margin: 0 0 15px;
       padding: 15px;
     }
@@ -79,7 +103,7 @@ a {
 .input {
   outline: 0;
   width: 100%;
-  border: 1px solid #cecece;
+  border: 1px solid $secondary-color-grey-light;
   margin: 0 0 15px;
   padding: 15px;
 }
@@ -119,7 +143,6 @@ a {
   justify-content: center;
   .message {
     margin: 15px 0;
-    color: #b3b3b3;
     font-size: 1.5rem;
     font-weight: bold;
     span {
@@ -127,19 +150,19 @@ a {
       font-weight: normal;
     }
     a {
-      color: #4caf50;
+      color: $secondary-color-success;
       text-decoration: none;
     }
   }
   .login-button {
-    background-color: rgb(7, 94, 207);
+    background-color: $base-color-blue;
     width: 50%;
     justify-content: center;
     align-items: center;
     outline: 0;
     border: 0;
     padding: 15px;
-    color: #ffffff;
+    color: $base-color-white;
     cursor: pointer;
     font-weight: 700;
     font-size: 1rem;
@@ -149,17 +172,18 @@ a {
 .logo {
   a {
     text-decoration: none;
-    color: #3f0788;
+    color: $base-color-purple;
     text-align: center;
     font-size: 1.5rem;
     span{
       font-size: 1.2rem;
     }
     &:hover {
-      color: #ca410f;
+      color: $secondary-color-danger-dark;
     }
   }
 }
+
 .product-search-input {
   padding: 16px 16px 16px 32px;
   border: 0;
@@ -167,21 +191,22 @@ a {
   background-image: url("./assets/search.png");
   background-position: 8px 18px;
   background-repeat: no-repeat;
-  border: 1px solid #cecece;
+  border: 1px solid $secondary-color-grey-light;
   margin: 2px auto;
   width: 50vw;
   display: flex;
 }
+
 .search {
-  background-color: #3f0788;
+  background-color: $base-color-purple;
   padding: 4px 30px;
   border: 0;
   outline: 0;
-  color: #fff;
+  color: $base-color-white;
   font-weight: 900;
   cursor: pointer;
   &:hover {
-    background-color: #570db8;
+    background-color: $base-color-purple-dark;
   }
 }
 
@@ -193,8 +218,8 @@ a {
   text-align: center;
   .product {
     padding: 10px;
-    background: #fefefe;
-    border: 1px solid #f2f2f2;
+    background: $secondary-color-grey-light-50;
+    border: 1px solid $secondary-color-grey-light-30;
     margin-bottom: 12px;
     list-style: none;
     img {
@@ -214,7 +239,7 @@ a {
       font-size: 1.3em;
       font-weight: 700;
       padding: 12px;
-      color: #570db8;
+      color: $base-color-purple-dark;
     }
   }
 }
@@ -223,20 +248,26 @@ a {
   padding: 10px 20px;
   border-radius: 4px;
   font-size: 0.8rem;
-  color: #fff;
+  color: $base-color-white;
   margin-left: 4px;
   cursor: pointer;
 }
 
 .button-primary {
-  border: 1px solid #28a745;
-  background-color: #28a745;
+  border: 1px solid $secondary-color-success;
+  background-color: $secondary-color-success;
   &:hover {
-    border: 1px solid #2d0cbd;
-    background-color: #0f4bbd;
+    border: 1px solid $base-color-blue-dark;
+    background-color: $base-color-blue-light;
   }
 }
 
+.font-large {
+  font-size: 1.5rem;
+}
+.text-right {
+  text-align: right;
+}
 .button-danger {
   border: 1px solid #910a2c;
   background-color: #be4d25;
@@ -247,12 +278,12 @@ a {
 }
 
 .button-secondary {
-  border: 1px solid #2d0cbd;
-  background-color: #0f4bbd;
+  border: 1px solid $base-color-blue-dark;
+  background-color: $base-color-blue-light;
   padding: 10px 20px;
   border-radius: 4px;
   cursor: pointer;
-  color: #fff;
+  color: $base-color-white;
 
   width: 50%;
   margin: 20px auto;
@@ -261,8 +292,8 @@ a {
   font-size: 1rem;
 
   &:hover {
-    border: 1px solid #570db8;
-    background-color: #40078b;
+    border: 1px solid $base-color-purple-dark;
+    background-color: $base-color-purple-dark-20;
   }
 }
 
@@ -272,8 +303,8 @@ a {
   justify-content: space-between;
   width: 100%;
   position: fixed;
-  background-color: #fefefe;
-  border-bottom: 1px solid #3f0788;
+  background-color: $secondary-color-grey-light-50;
+  border-bottom: 1px solid $base-color-purple;
   top: 0;
 
   .top-navigation {
@@ -299,7 +330,7 @@ a {
         flex-direction: column;
         span {
           font-size: 0.5rem;
-          color: #666666;
+          color: $secondary-color-grey-dark-50;
         }
       }
     }
@@ -322,19 +353,19 @@ a {
       flex-direction: column;
       span {
         font-size: 0.5rem;
-        color: #666666;
+        color: $secondary-color-grey-dark-50;
       }
     }
   }
 }
 
 .error-message {
-  color: #dc3545;
+  color: $secondary-color-danger;
   font-size: 0.85rem;
   margin: 8px auto 12px auto;
 }
 .is-invalid {
-  border-color: #dc3545 !important;
+  border-color: $secondary-color-danger !important;
 }
 
 .cart {
@@ -347,19 +378,19 @@ a {
   width: 24px;
   height: 24px;
   font-size: 16px;
-  color: #fff;
+  color: $base-color-white;
   border-radius: 40px;
   margin: auto;
-  background: #3f0788;
+  background: $base-color-purple;
   padding: 6px 12px;
   margin-left: 12px;
 }
 
 button:disabled,
 button[disabled] {
-  border: 1px solid #999999 !important;
-  background-color: #cccccc !important;
-  color: #666666 !important;
+  border: 1px solid $secondary-color-grey-dark-50 !important;
+  background-color: $secondary-color-grey-light !important;
+  color: $secondary-color-grey-dark-50 !important;
 }
 
 .shopping-cart-container {
@@ -371,11 +402,53 @@ button[disabled] {
 }
 
 .color-secondary {
-  color: #570db8;
+  color: $base-color-purple-dark;
 }
 
 
 .success{
-  color: #28a745;
+  color: $secondary-color-success;
   padding: 20px;
+}
+
+
+.column-labels {
+  display: flex;
+  width: 80%;
+  margin: 0 auto;
+  border: 1px solid #dedede;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 10px;
+  font-weight: 700;
+}
+
+.shopping-cart-product-container {
+  display: flex;
+  flex-flow: row nowrap;
+  border-bottom: 1px solid #dadada;
+  width: 80%;
+  margin: 0 auto;
+  .cart-item {
+    display: flex;
+    flex: 1;
+    font-size: 14px;
+    padding: 8px 0;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    text-align: left;
+    img {
+      width: 60%;
+    }
+  }
+
+  .product-details {
+    flex-direction: column;
+    justify-content: start;
+
+    .product-name {
+      text-align: left;
+    }
+  }
 }

@@ -1,24 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
-import {
-  getAllProductsAction,
-  getAllProductsSuccessAction,
-  getAllProductsErrorAction,
-  pageLoadCounterAction,
-  updateCartDataAction,
-  updateCartDataSuccessAction,
-  updateKeywordAction,
-  clearStoreDataAction,
-  pageLoadCounterDownAction,
-  addShoppingCartItemsAction,
-  removeShoppingCartItemsAction,
-  checkAuthAction,
-  checkAuthActionSuccessAction,
-  getAllUsersAction,
-  removeProductsAction,
-  removeProductsSuccessAction,
-} from './actions';
+import * as productsActions from './actions';
 import { Product, User } from 'src/app/models/shopping-cart';
-import { state } from '@angular/animations';
 
 export interface ProductsState {
   error: any;
@@ -46,58 +28,72 @@ export const initialState: ProductsState = {
 
 export const productsReducer = createReducer(
   initialState,
-  on(updateKeywordAction, (state, { keyword }) => ({
+  on(productsActions.updateKeywordAction, (state, { keyword }) => ({
     ...state,
+    error: null,
     keyword: keyword,
   })),
-  on(getAllProductsAction, (state) => ({ ...state, status: 'loading' })),
-  on(getAllProductsSuccessAction, (state, { data }) => ({
+  on(productsActions.getAllProductsAction, (state) => ({ ...state, status: 'loading' })),
+  on(productsActions.getAllProductsSuccessAction, (state, { data }) => ({
     ...state,
+    error: null,
     data: [...state.data, ...data],
     status: 'success',
   })),
-  on(updateCartDataAction, (state, { keyword }) => ({
+  on(productsActions.updateCartDataAction, (state, { keyword }) => ({
     ...state,
+    error: null,
     keyword: keyword,
     status: 'loading',
   })),
-  on(updateCartDataSuccessAction, (state, { data }) => ({
+  on(productsActions.updateCartDataSuccessAction, (state, { data }) => ({
     ...state,
     data: data,
     status: 'success',
   })),
-  on(getAllProductsErrorAction, (state, { error }) => ({
+  on(productsActions.getAllProductsErrorAction, (state, { error }) => ({
     ...state,
     error: error,
   })),
-  on(clearStoreDataAction, (state) => ({
+  on(productsActions.clearStoreDataAction, (state) => ({
     ...state,
     pagecount: 1,
   })),
-  on(pageLoadCounterAction, (state) => ({
+  on(productsActions.pageLoadCounterAction, (state) => ({
     ...state,
     pagecount: state.pagecount + 1,
   })),
-  on(pageLoadCounterDownAction, (state) => ({
+  on(productsActions.pageLoadCounterDownAction, (state) => ({
     ...state,
+    error: null,
     pagecount: state.pagecount - 1,
   })),
-  on(checkAuthAction, (state) => ({
+  on(productsActions.checkAuthAction, (state) => ({
     ...state,
+    error: null,
     status: 'checkingauth',
     isLoggedIn: false
   })),
-  on(checkAuthActionSuccessAction, (state, { user: data }) => ({
+  on(productsActions.checkAuthSuccessAction, (state, { user: data }) => ({
     ...state,
+    error: null,
     status: 'success',
     isLoggedIn: true,
     user: data
   })),
-  on(getAllUsersAction, (state, { user: data }) => ({
+  on(productsActions.checkAuthErrorAction, (state, { error: error }) => ({
+    ...state,
+    status: 'error',
+    error: true,
+    isLoggedIn: false,
+    data: [],
+    user: null
+  })),
+  on(productsActions.getAllUsersAction, (state, { user: data }) => ({
     ...state,
     allusers: data,
   })),
-  on(addShoppingCartItemsAction, (state, { shoppingCartItem }) => {
+  on(productsActions.addShoppingCartItemsAction, (state, { shoppingCartItem }) => {
     const addToShoppingCart = [...state.shoppingcartitems];
     const isAlreadyIntheCart = addToShoppingCart.find(
       (iteminthearray: Product) => iteminthearray.id === shoppingCartItem.id
@@ -111,7 +107,7 @@ export const productsReducer = createReducer(
       shoppingcartitems: [...addToShoppingCart],
     };
   }),
-  on(removeShoppingCartItemsAction, (state, { removeShoppingCartItem }) => {
+  on(productsActions.removeShoppingCartItemsAction, (state, { removeShoppingCartItem }) => {
     const filterInTheCart = state.shoppingcartitems.filter(
       (item: Product) => item.id !== removeShoppingCartItem.id
     );
@@ -120,10 +116,10 @@ export const productsReducer = createReducer(
       shoppingcartitems: [...filterInTheCart],
     };
   }),
-  on(removeProductsAction, (state, { product }) => ({
+  on(productsActions.removeProductsAction, (state, { product }) => ({
     ...state
   })),
-  on(removeProductsSuccessAction, (state, { id }) => {
+  on(productsActions.removeProductsSuccessAction, (state, { id }) => {
     const filteredData = state.data.filter(
       (item: Product) => item.id !== id
     );
@@ -140,7 +136,15 @@ export const getKeyword = (productstate: ProductsState) => productstate.keyword;
 export const getCurrentUserName = (productstate: ProductsState) => productstate.user?.name?.firstName;
 export const getCurrentUserRole = (productstate: ProductsState) => productstate.user?.role;
 export const getShoppingCartItems = (productstate: ProductsState) => productstate.shoppingcartitems;
-export const getShoppingCartItemsLength = (productstate: ProductsState) => productstate.shoppingcartitems.length
+export const getShoppingCartItemsLength = (productstate: ProductsState) => productstate.shoppingcartitems.length;
+
+export const getShoppingCartSubTotal = (productstate: ProductsState) => productstate.shoppingcartitems.reduce((price, currentprice) => { return price + currentprice.price}, 0);
+
+
+export const getShoppingCartSum = (productstate: ProductsState) => productstate.shoppingcartitems.reduce((price, currentprice) => { return price + currentprice.price}, 0);
+
+
+export const getLogInFormErrorSelector = (productstate: ProductsState) => productstate.error;
 export const getLoggedInStatus = (productstate: ProductsState) => productstate.isLoggedIn;
 
 

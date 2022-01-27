@@ -5,7 +5,7 @@
       <span>use</span><br />
       Admin <span>or</span> User <span><br />credentials to login</span>
     </h2>
-    <p *ngIf="errorvalues" class="error-message">
+    <p *ngIf="errorvalues || (loginerror$ | async)" class="error-message">
       Invalid inputs, please try again
     </p>
     <form [formGroup]="authform" (ngSubmit)="checkAuth()">

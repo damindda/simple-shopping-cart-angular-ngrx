@@ -2,6 +2,7 @@ import { Store } from '@ngrx/store';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { checkAuthAction } from 'src/app/store/products/actions';
+import { getLoggedInFormErrorSelector } from 'src/app/store/app.state';
 
 
 @Component({
@@ -11,7 +12,7 @@ import { checkAuthAction } from 'src/app/store/products/actions';
 })
 export class LoginComponent implements OnInit {
 
-
+  loginerror$ = this.store.select(getLoggedInFormErrorSelector);
   authform = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
   });
