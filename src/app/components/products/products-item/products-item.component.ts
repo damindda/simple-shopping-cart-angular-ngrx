@@ -39,7 +39,7 @@ export class ProductsItemComponent implements OnInit {
   constructor(private store: Store, private http: HttpClient) {}
 
   ngOnInit(): void {
-    // this.loadAllProductsDetails();
+    this.loadAllProductsDetails();
   }
 
   onScrollDown() {
