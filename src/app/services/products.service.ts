@@ -29,17 +29,9 @@ export class ProductsService {
   constructor(private http: HttpClient, private store: Store<AppState>) {}
 
   getAllProductsData(search: string): Observable<Product[]> {
-    this.pagecount$.pipe(take(1)).subscribe((data) => {
+    this.pagecount$.subscribe((data) => {
       this.count = data;
     });
-
-    const source = of(1, 2, 3, 4, 5);
-    //take the first emitted value then complete
-    const example = source.pipe(take(1));
-    //output: 1
-    const subscribe = example.subscribe((val) => console.log('val', val));
-
-    console.log('this.count', this.count);
     const url = `${this.baseurl}/products?q=${search}&_page=${this.count}&_limit=10`;
     return this.http.get<Product[]>(url);
   }
