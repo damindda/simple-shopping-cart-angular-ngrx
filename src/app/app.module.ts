@@ -24,7 +24,6 @@ import { reducers } from '../app/store/app.state';
 import { ProductsPageComponent } from './components/products/products-page/products-page.component';
 import { AdminAddProductsComponent } from './components/products/admin-add-products/admin-add-products.component';
 import { CartCounterComponent } from './components/products/cart-counter/cart-counter.component';
-import { CheckAccessLevelsDirective } from './directives/check-access/check-access-levels.directive'
 
 
 @NgModule({
@@ -41,7 +40,6 @@ import { CheckAccessLevelsDirective } from './directives/check-access/check-acce
     ProductsPageComponent,
     AdminAddProductsComponent,
     CartCounterComponent,
-    CheckAccessLevelsDirective
   ],
   imports: [
     BrowserModule,
