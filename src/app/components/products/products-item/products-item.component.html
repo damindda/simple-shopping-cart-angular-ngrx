@@ -1,3 +1,5 @@
+<app-loading-spinner></app-loading-spinner>
+
 
 <div class="product-container">
   <div class="product" *ngFor="let item of products$ | async; index as index;">
@@ -19,5 +21,4 @@
   (scrolled)="onScrollDown()"
   (scrolledUp)="onScrollUp()"
 >
-  <app-loading-spinner></app-loading-spinner>
 </div>

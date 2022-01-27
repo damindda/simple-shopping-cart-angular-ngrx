@@ -5,6 +5,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import {
   getCurrentUserRoleSelector,
+  getIsLoadingSelector,
   getKeywordsSelector,
   getProductsSelector,
 } from 'src/app/store/app.state';
@@ -17,6 +18,7 @@ import {
   removeProductsAction,
   updateCartDataAction,
 } from 'src/app/store/products/actions';
+import { getIsLoading } from 'src/app/store/products/reducers';
 
 @Component({
   selector: 'app-products-item',

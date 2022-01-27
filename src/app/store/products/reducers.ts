@@ -12,6 +12,7 @@ export interface ProductsState {
   shoppingcartitems: Product[];
   isLoggedIn: boolean;
   user: User | null;
+  isLoading: boolean;
 }
 
 export const initialState: ProductsState = {
@@ -23,7 +24,8 @@ export const initialState: ProductsState = {
   allusers: [],
   shoppingcartitems: [],
   isLoggedIn: false,
-  user: null
+  user: null,
+  isLoading: true
 };
 
 export const productsReducer = createReducer(
@@ -39,6 +41,7 @@ export const productsReducer = createReducer(
     error: null,
     data: [...state.data, ...data],
     status: 'success',
+    isLoading: false
   })),
   on(productsActions.updateCartDataAction, (state, { keyword }) => ({
     ...state,
@@ -50,6 +53,7 @@ export const productsReducer = createReducer(
     ...state,
     data: data,
     status: 'success',
+    isLoading: false
   })),
   on(productsActions.getAllProductsErrorAction, (state, { error }) => ({
     ...state,
@@ -146,5 +150,7 @@ export const getShoppingCartSum = (productstate: ProductsState) => productstate.
 
 export const getLogInFormErrorSelector = (productstate: ProductsState) => productstate.error;
 export const getLoggedInStatus = (productstate: ProductsState) => productstate.isLoggedIn;
+
+export const getIsLoading = (productstate: ProductsState) => productstate.isLoading;
 
 

@@ -1,4 +1,4 @@
 <div class="loading-container">
-  <div class="loading-spinner"></div>
+  <div class="loading-spinner" *ngIf="isLoading$ | async"></div>
   <div  *ngIf="!productlength">no data available to show</div>
 </div>

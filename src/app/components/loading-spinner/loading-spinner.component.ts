@@ -1,7 +1,7 @@
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
-import { getProductsSelector } from 'src/app/store/app.state';
+import { getIsLoadingSelector, getProductsSelector } from 'src/app/store/app.state';
 import { Product } from 'src/app/models/shopping-cart';
 
 @Component({
@@ -12,16 +12,15 @@ import { Product } from 'src/app/models/shopping-cart';
 export class LoadingSpinnerComponent implements OnInit {
 
   products$: Observable<Product[]> = this.store.select(getProductsSelector);
+  isLoading$: Observable<boolean> = this.store.select(getIsLoadingSelector);
+
   productlength!: boolean;
   constructor(private store: Store) { }
 
   ngOnInit(): void {
     this.products$.subscribe(data => {
-      if(data.length > 0) {
-        this.productlength = true;
-      } else {
-        this.productlength = false;
-      }
+      if(data.length) this.productlength = true;
+      return false;
     });
   }
 
