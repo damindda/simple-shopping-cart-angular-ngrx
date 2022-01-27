@@ -34,6 +34,7 @@ export const productsReducer = createReducer(
     ...state,
     error: null,
     keyword: keyword,
+    isLoading: false
   })),
   on(productsActions.getAllProductsAction, (state) => ({ ...state, status: 'loading' })),
   on(productsActions.getAllProductsSuccessAction, (state, { data }) => ({
@@ -58,6 +59,7 @@ export const productsReducer = createReducer(
   on(productsActions.getAllProductsErrorAction, (state, { error }) => ({
     ...state,
     error: error,
+    isLoading: false
   })),
   on(productsActions.clearStoreDataAction, (state) => ({
     ...state,
@@ -141,16 +143,10 @@ export const getCurrentUserName = (productstate: ProductsState) => productstate.
 export const getCurrentUserRole = (productstate: ProductsState) => productstate.user?.role;
 export const getShoppingCartItems = (productstate: ProductsState) => productstate.shoppingcartitems;
 export const getShoppingCartItemsLength = (productstate: ProductsState) => productstate.shoppingcartitems.length;
-
 export const getShoppingCartSubTotal = (productstate: ProductsState) => productstate.shoppingcartitems.reduce((price, currentprice) => { return price + currentprice.price}, 0);
-
-
 export const getShoppingCartSum = (productstate: ProductsState) => productstate.shoppingcartitems.reduce((price, currentprice) => { return price + currentprice.price}, 0);
-
-
 export const getLogInFormErrorSelector = (productstate: ProductsState) => productstate.error;
 export const getLoggedInStatus = (productstate: ProductsState) => productstate.isLoggedIn;
-
 export const getIsLoading = (productstate: ProductsState) => productstate.isLoading;
 
 

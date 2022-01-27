@@ -13,6 +13,8 @@ export class ProductsService {
   constructor(private http: HttpClient) {}
 
   getAllProductsData(search: string, count: number): Observable<Product[]> {
+    debugger;
+    console.log('count ---->',count);
     const url = `${this.baseurl}/products?q=${search}&_page=${count}&_limit=10`;
     return this.http.get<Product[]>(url);
   }
