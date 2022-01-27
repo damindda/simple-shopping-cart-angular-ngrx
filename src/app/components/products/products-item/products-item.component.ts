@@ -7,6 +7,7 @@ import {
   getCurrentUserRoleSelector,
   getIsLoadingSelector,
   getKeywordsSelector,
+  getPageCountSelector,
   getProductsSelector,
 } from 'src/app/store/app.state';
 import {
@@ -27,6 +28,9 @@ import { getIsLoading } from 'src/app/store/products/reducers';
 export class ProductsItemComponent implements OnInit {
   products$: Observable<Product[]> = this.store.select(getProductsSelector);
   keyword$: Observable<string> = this.store.select(getKeywordsSelector);
+
+  pagecount$: Observable<number> = this.store.select(getPageCountSelector);
+
   currentUserRole$: Observable<any> = this.store.select(
     getCurrentUserRoleSelector
   );
@@ -39,7 +43,9 @@ export class ProductsItemComponent implements OnInit {
   }
 
   onScrollDown() {
+
     this.store.dispatch(pageLoadCounterAction());
+
     this.getUpdatedProductsDetails();
   }
 
@@ -48,18 +54,23 @@ export class ProductsItemComponent implements OnInit {
   }
 
   loadAllProductsDetails() {
+
+    this.pagecount$.subscribe((data) => {
+      this.count = data;
+    });
+
     this.keyword$.subscribe((searchkeyword) => {
       if (!searchkeyword) {
-        this.store.dispatch(getAllProductsAction({ keyword: searchkeyword }));
+        this.store.dispatch(getAllProductsAction({ keyword: searchkeyword, count: this.count }));
       } else {
-        this.store.dispatch(updateCartDataAction({ keyword: searchkeyword }));
+        this.store.dispatch(updateCartDataAction({ keyword: searchkeyword, count: this.count }));
       }
     });
   }
 
   getUpdatedProductsDetails() {
     this.keyword$.subscribe((searchkeyword) => {
-      this.store.dispatch(getAllProductsAction({ keyword: searchkeyword }));
+      this.store.dispatch(getAllProductsAction({ keyword: searchkeyword, count: this.count }));
     });
   }
 

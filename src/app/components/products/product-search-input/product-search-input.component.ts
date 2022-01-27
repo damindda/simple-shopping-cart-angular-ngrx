@@ -7,7 +7,7 @@ import {
   filter,
 } from 'rxjs';
 import { AppState } from 'src/app/store/app.state';
-import { clearStoreDataAction, updateCartDataAction, updateKeywordAction } from 'src/app/store/products/actions';
+import { clearStoreDataAction, updateKeywordAction } from 'src/app/store/products/actions';
 
 @Component({
   selector: 'app-product-search-input',

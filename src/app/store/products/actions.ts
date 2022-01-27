@@ -10,7 +10,7 @@ export const updateKeywordAction = createAction(
 
 export const getAllProductsAction = createAction(
   ProductsActionTypes.GET_ALL_PRODUCTS,
-  props<{ keyword: string }>()
+  props<{ keyword: string, count: number }>()
 )
 
 export const getAllProductsSuccessAction = createAction(
@@ -25,7 +25,7 @@ export const getAllProductsErrorAction = createAction(
 
 export const updateCartDataAction = createAction(
   ProductsActionTypes.UPDATE_PRODUCTS,
-  props<{ keyword: string }>()
+  props<{ keyword: string, count: number }>()
 )
 
 export const updateCartDataSuccessAction = createAction(

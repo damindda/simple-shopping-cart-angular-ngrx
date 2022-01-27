@@ -44,7 +44,7 @@ export class ProductEffects {
       ofType(getAllProductsAction),
       switchMap((actions) => {
         this.store.dispatch(startLoadingAction());
-        return this.productsService.getAllProductsData(actions.keyword).pipe(
+        return this.productsService.getAllProductsData(actions.keyword, actions.count).pipe(
           map((products) => getAllProductsSuccessAction({ data: products })),
           shareReplay(1),
           catchError(() =>
@@ -65,7 +65,7 @@ export class ProductEffects {
       switchMap((actions) => {
         this.store.dispatch(clearStoreDataAction());
         this.store.dispatch(startLoadingAction());
-        return this.productsService.getAllProductsData(actions.keyword).pipe(
+        return this.productsService.getAllProductsData(actions.keyword, actions.count).pipe(
           map((products) => updateCartDataSuccessAction({ data: products })),
           catchError(() =>
             of(
