@@ -67,6 +67,7 @@ export class ProductEffects {
         this.store.dispatch(startLoadingAction());
         return this.productsService.getAllProductsData(actions.keyword, actions.count).pipe(
           map((products) => updateCartDataSuccessAction({ data: products })),
+          shareReplay(1),
           catchError(() =>
             of(
               getAllProductsErrorAction({

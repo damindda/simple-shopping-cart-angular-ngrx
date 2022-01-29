@@ -43,15 +43,10 @@ export class ProductsItemComponent implements OnInit {
   }
 
   onScrollDown() {
-
     this.store.dispatch(pageLoadCounterAction());
-
     this.getUpdatedProductsDetails();
   }
 
-  onScrollUp() {
-    this.store.dispatch(pageLoadCounterDownAction());
-  }
 
   loadAllProductsDetails() {
 
@@ -75,43 +70,11 @@ export class ProductsItemComponent implements OnInit {
   }
 
   addToCart(item: Product) {
-
-    const newItem: Cart = {
-      id: item.id,
-      products: [
-        {
-          id: item.id,
-          quantity: 1,
-        },
-      ],
-    };
-
-    const newProductSelection: ProductSelection = {
-      id: item.id,
-      quantity: 1,
-    }
-
-    // console.log('newItem', newItem);
-    // console.log('item', item);
-    // console.log('newProductSelection', newProductSelection);
-
-    const newItemOne: ProductSelectionNew = {
-      id: item.id,
-      name: item.name,
-      images: item.defaultImage,
-      price: item.price,
-      quantity: 1,
-    };
-
     const quantity = {
       qty: 1
     }
-
-    const newItemTwo: Product = {...item, ...quantity};
-
-    console.log('newItemTwo', newItemTwo);
-
-    this.store.dispatch(addShoppingCartItemsAction({ shoppingCartItem: newItemTwo }));
+    const itemWithQty: Product = {...item, ...quantity};
+    this.store.dispatch(addShoppingCartItemsAction({ shoppingCartItem: itemWithQty }));
   }
 
   editProduct(item: Product) {
