@@ -34,35 +34,4 @@ export class CartComponent implements OnInit {
     this.store.dispatch(removeShoppingCartItemsAction({ removeShoppingCartItem: item }));
   }
 
-  get subtotal() {
-    return 1;
-
-
-      // return this.items.reduce((sum,x)=>
-      // ({quantity:1,
-      //   priceWhenBought:sum.priceWhenBought+x.quantity*x.priceWhenBought}),
-      // {quantity:1,priceWhenBought:0}).priceWhenBought;
-
-
-  }
-
-
-  // private get total$(): Observable<Totals> {
-  //   return this.cart$.pipe(
-  //     map(items => {
-  //       let total = 0;
-  //       for (const i of items) {
-  //         total += i.price;
-  //       }
-  //       return total;
-  //     }),
-  //     map(cost => ({
-  //       subTot: cost,
-  //       tax: .034 * cost,
-  //       grandTot: .034 * cost + cost
-  //     })
-  //     )
-  //   );
-  // }
-
 }

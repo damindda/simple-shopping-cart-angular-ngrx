@@ -25,6 +25,7 @@ export class ProductSearchInputComponent implements OnInit {
 
   getSearchedResults(text: string) {
     this.keyword$.next(text.trim());
+    console.log(text);
   }
 
   getFilteredData() {
@@ -39,5 +40,6 @@ export class ProductSearchInputComponent implements OnInit {
         this.store.dispatch(clearStoreDataAction());
         this.store.dispatch(updateKeywordAction({ keyword: data }));
       });
+
   }
 }

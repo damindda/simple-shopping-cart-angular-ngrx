@@ -1,25 +1,21 @@
 import { HttpClient } from '@angular/common/http';
-import { Cart, Product, ProductSelection, ProductSelectionNew } from './../../../models/shopping-cart';
+import { Product } from './../../../models/shopping-cart';
 import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import {
   getCurrentUserRoleSelector,
-  getIsLoadingSelector,
   getKeywordsSelector,
   getPageCountSelector,
   getProductsSelector,
 } from 'src/app/store/app.state';
 import {
   addShoppingCartItemsAction,
-  clearStoreDataAction,
   getAllProductsAction,
   pageLoadCounterAction,
-  pageLoadCounterDownAction,
   removeProductsAction,
   updateCartDataAction,
 } from 'src/app/store/products/actions';
-import { getIsLoading } from 'src/app/store/products/reducers';
 
 @Component({
   selector: 'app-products-item',
@@ -47,34 +43,40 @@ export class ProductsItemComponent implements OnInit {
     this.getUpdatedProductsDetails();
   }
 
-
   loadAllProductsDetails() {
-
     this.pagecount$.subscribe((data) => {
       this.count = data;
     });
 
     this.keyword$.subscribe((searchkeyword) => {
       if (!searchkeyword) {
-        this.store.dispatch(getAllProductsAction({ keyword: searchkeyword, count: this.count }));
+        this.store.dispatch(
+          getAllProductsAction({ keyword: searchkeyword, count: this.count })
+        );
       } else {
-        this.store.dispatch(updateCartDataAction({ keyword: searchkeyword, count: this.count }));
+        this.store.dispatch(
+          updateCartDataAction({ keyword: searchkeyword, count: this.count })
+        );
       }
     });
   }
 
   getUpdatedProductsDetails() {
     this.keyword$.subscribe((searchkeyword) => {
-      this.store.dispatch(getAllProductsAction({ keyword: searchkeyword, count: this.count }));
+      this.store.dispatch(
+        getAllProductsAction({ keyword: searchkeyword, count: this.count })
+      );
     });
   }
 
   addToCart(item: Product) {
     const quantity = {
-      qty: 1
-    }
-    const itemWithQty: Product = {...item, ...quantity};
-    this.store.dispatch(addShoppingCartItemsAction({ shoppingCartItem: itemWithQty }));
+      qty: 1,
+    };
+    const itemWithQty: Product = { ...item, ...quantity };
+    this.store.dispatch(
+      addShoppingCartItemsAction({ shoppingCartItem: itemWithQty })
+    );
   }
 
   editProduct(item: Product) {
