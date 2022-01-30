@@ -1,18 +1,13 @@
 import { Product } from 'src/app/models/shopping-cart';
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import {
-  FormControl,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-admin-add-products',
   templateUrl: './admin-add-products.component.html',
 })
 export class AdminAddProductsComponent implements OnInit {
-
   submitted: boolean = false;
   success: boolean = false;
 
@@ -33,7 +28,7 @@ export class AdminAddProductsComponent implements OnInit {
   submitShoppingCartItems() {
     this.submitted = true;
 
-    if(this.shoppingcartform.valid) {
+    if (this.shoppingcartform.valid) {
       const output = {
         name: this.shoppingcartform.value.name,
         description: this.shoppingcartform.value.description,
@@ -42,25 +37,23 @@ export class AdminAddProductsComponent implements OnInit {
           'http://placeimg.com/640/480/cats',
           'http://placeimg.com/640/480/cats',
           'http://placeimg.com/640/480/cats',
-          'http://placeimg.com/640/480/cats'
-      ],
+          'http://placeimg.com/640/480/cats',
+        ],
         price: this.shoppingcartform.value.price,
-        discount: this.shoppingcartform.value.discount
-     }
+        discount: this.shoppingcartform.value.discount,
+      };
 
-      this.http.post<Product>('http://localhost:8080/products', output).subscribe(data => {
-
-      if(data) {
-        this.shoppingcartform.reset();
-        this.success = true;
-      }
-
-      });
-
+      this.http
+        .post<Product>('http://localhost:8080/products', output)
+        .subscribe((data) => {
+          if (data) {
+            this.shoppingcartform.reset();
+            this.success = true;
+          }
+        });
     } else {
-      console.log('form is not valid');
+      alert('form is not valid');
     }
-
   }
 
   get shoppingcartformvalues() {

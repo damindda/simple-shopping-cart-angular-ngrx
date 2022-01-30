@@ -18,12 +18,10 @@ export class CartCounterComponent implements OnInit {
   }
 
   increment() {
-    console.log('this.item', this.item.qty);
     alert('not implemented');
   }
 
   decrement() {
-    console.log('this.item', this.item);
     alert('not implemented');
   }
 

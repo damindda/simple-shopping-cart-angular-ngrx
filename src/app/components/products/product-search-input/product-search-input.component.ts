@@ -25,7 +25,6 @@ export class ProductSearchInputComponent implements OnInit {
 
   getSearchedResults(text: string) {
     this.keyword$.next(text.trim());
-    console.log(text);
   }
 
   getFilteredData() {
