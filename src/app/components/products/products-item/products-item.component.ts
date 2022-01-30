@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Product } from './../../../models/shopping-cart';
-import { Observable } from 'rxjs';
+import { Observable, lastValueFrom, map } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import {
@@ -23,13 +23,10 @@ import {
 })
 export class ProductsItemComponent implements OnInit {
   products$: Observable<Product[]> = this.store.select(getProductsSelector);
-  keyword$: Observable<string> = this.store.select(getKeywordsSelector);
-
+  keyword$: Observable<string> = this.store.select(getKeywordsSelector).pipe(map(data => this.keyword = data));
   pagecount$: Observable<number> = this.store.select(getPageCountSelector);
-
-  currentUserRole$: Observable<any> = this.store.select(
-    getCurrentUserRoleSelector
-  );
+  currentUserRole$: Observable<any> = this.store.select(getCurrentUserRoleSelector);
+  keyword!: string;
   count: number = 0;
 
   constructor(private store: Store, private http: HttpClient) {}
@@ -39,7 +36,6 @@ export class ProductsItemComponent implements OnInit {
   }
 
   onScrollDown() {
-    this.store.dispatch(pageLoadCounterAction());
     this.getUpdatedProductsDetails();
   }
 
@@ -62,11 +58,8 @@ export class ProductsItemComponent implements OnInit {
   }
 
   getUpdatedProductsDetails() {
-    this.keyword$.subscribe((searchkeyword) => {
-      this.store.dispatch(
-        getAllProductsAction({ keyword: searchkeyword, count: this.count })
-      );
-    });
+    this.store.dispatch(pageLoadCounterAction());
+    this.store.dispatch(getAllProductsAction({ keyword: this.keyword, count: this.count }));
   }
 
   addToCart(item: Product) {
