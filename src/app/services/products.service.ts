@@ -18,10 +18,10 @@ export class ProductsService {
   }
 
   checkAuth(): Observable<User[]> {
-    return this.http.get<User[]>('http://localhost:8080/users');
+    return this.http.get<User[]>(`${this.baseurl}/users`);
   }
 
   removeProduct(id: number): Observable<Product> {
-    return this.http.delete<Product>(`http://localhost:8080/products/${id}`);
+    return this.http.delete<Product>(`${this.baseurl}/products/${id}`);
   }
 }
