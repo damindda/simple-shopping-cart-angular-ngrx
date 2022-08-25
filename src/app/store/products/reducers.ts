@@ -55,7 +55,7 @@ export const productsReducer = createReducer(
   })),
   on(productsActions.updateCartDataSuccessAction, (state, { data }) => {
     const filteredItems = data.filter((item: Product) => {
-      return item.title.includes(state.keyword);
+      return item.title.toLowerCase().includes(state.keyword.toLowerCase());
     });
 
     return {
