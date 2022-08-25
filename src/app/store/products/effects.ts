@@ -47,7 +47,6 @@ export class ProductEffects {
         return this.productsService
           .getAllProductsData(actions.keyword, actions.count)
           .pipe(
-            tap((data) => console.log(data)),
             map((products: Product[]) => getAllProductsSuccessAction({ data: products })),
             shareReplay(1),
             catchError(() =>
