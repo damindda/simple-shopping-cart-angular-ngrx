@@ -223,7 +223,8 @@ a {
     margin-bottom: 12px;
     list-style: none;
     img {
-      width: 98%;
+      max-width: 98%;
+      height: 200px;
     }
     .product-name {
       font-size: 1.2rem;
