@@ -2,7 +2,7 @@
 <div class="product-container">
   <div class="product" *ngFor="let item of products$ | async; index as index">
     <img src="{{ item?.image }}" alt="{{ item.title }}" />
-    <p class="product-description">{{ item.description }}</p>
+    <p class="product-description">{{ item.title }}</p>
     <p class="product-price">{{ item.price | currency: "£" }}</p>
     <button
       type="button"

@@ -22,7 +22,9 @@
       <p class="product-description">{{ item.description }}</p>
     </div>
     <div class="cart-item">{{ item.price | currency: "£" }}</div>
-    <div class="cart-item"><app-cart-counter [item]="item"></app-cart-counter></div>
+    <div class="cart-item">
+      <app-cart-counter [item]="item"></app-cart-counter>
+    </div>
     <div class="cart-item">{{ item.price | currency: "£" }}</div>
     <div class="cart-item">
       <button
@@ -34,11 +36,13 @@
       </button>
     </div>
   </div>
-
-  <div>
-    <h2 class="header text-right">Sum : {{shoppingCartSum$ | async | currency: "£"}}</h2>
+  <div class="shopping-cart-product-container">
+    <div class="cart-item justify-end">
+      <h2 class="header text-right">
+        Sum : {{ shoppingCartSum$ | async | currency: "£" }}
+      </h2>
+    </div>
   </div>
-
 </div>
 
 <ng-template #noData>
