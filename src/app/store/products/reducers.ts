@@ -40,7 +40,7 @@ export const productsReducer = createReducer(
   on(productsActions.getAllProductsSuccessAction, (state, { data }) => ({
     ...state,
     error: null,
-    data: [...state.data, ...data],
+    data: [...data],
     status: 'success',
     isLoading: false
   })),

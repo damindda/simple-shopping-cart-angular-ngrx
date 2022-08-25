@@ -33,6 +33,7 @@ export class ProductsItemComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadAllProductsDetails();
+    this.products$.subscribe((data) => console.log(`data ---> ${data}`))
   }
 
   onScrollDown() {

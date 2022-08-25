@@ -13,7 +13,9 @@ export class ProductsService {
   constructor(private http: HttpClient) {}
 
   getAllProductsData(search: string, count: number): Observable<Product[]> {
-    const url = `${this.baseurl}/products?q=${search}&_page=${count}&_limit=10`;
+    // const url = `${this.baseurl}/products?q=${search}&_page=${count}&_limit=10`;
+    const url = `${this.baseurl}/products`;
+
     return this.http.get<Product[]>(url);
   }
 

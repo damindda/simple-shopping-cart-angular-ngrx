@@ -27,7 +27,7 @@ import {
   removeProductsSuccessAction,
 } from './actions';
 import { ProductsService } from 'src/app/services/products.service';
-
+import { Product } from '../../models/shopping-cart';
 @Injectable()
 export class ProductEffects {
   currentuserdata!: User;
@@ -44,17 +44,20 @@ export class ProductEffects {
       ofType(getAllProductsAction),
       switchMap((actions) => {
         this.store.dispatch(startLoadingAction());
-        return this.productsService.getAllProductsData(actions.keyword, actions.count).pipe(
-          map((products) => getAllProductsSuccessAction({ data: products })),
-          shareReplay(1),
-          catchError(() =>
-            of(
-              getAllProductsErrorAction({
-                error: 'there is an error while getting data',
-              })
+        return this.productsService
+          .getAllProductsData(actions.keyword, actions.count)
+          .pipe(
+            tap((data) => console.log(data)),
+            map((products: Product[]) => getAllProductsSuccessAction({ data: products })),
+            shareReplay(1),
+            catchError(() =>
+              of(
+                getAllProductsErrorAction({
+                  error: 'there is an error while getting data',
+                })
+              )
             )
-          )
-        );
+          );
       })
     );
   });
@@ -65,17 +68,19 @@ export class ProductEffects {
       switchMap((actions) => {
         this.store.dispatch(clearStoreDataAction());
         this.store.dispatch(startLoadingAction());
-        return this.productsService.getAllProductsData(actions.keyword, actions.count).pipe(
-          map((products) => updateCartDataSuccessAction({ data: products })),
-          shareReplay(1),
-          catchError(() =>
-            of(
-              getAllProductsErrorAction({
-                error: 'there is an error while getting data',
-              })
+        return this.productsService
+          .getAllProductsData(actions.keyword, actions.count)
+          .pipe(
+            map((products) => updateCartDataSuccessAction({ data: products })),
+            shareReplay(1),
+            catchError(() =>
+              of(
+                getAllProductsErrorAction({
+                  error: 'there is an error while getting data',
+                })
+              )
             )
-          )
-        );
+          );
       })
     );
   });
@@ -95,9 +100,8 @@ export class ProductEffects {
             if (typeof firstelement !== 'undefined') {
               return checkAuthSuccessAction({ user: firstelement });
             } else {
-              return checkAuthErrorAction({error: "there is an error"});
+              return checkAuthErrorAction({ error: 'there is an error' });
             }
-
           }),
           catchError(() =>
             of(
@@ -121,17 +125,16 @@ export class ProductEffects {
           this.router.navigate(['/products']);
         }),
         catchError(() =>
-        of(
-          checkAuthErrorAction({
-            error: 'there is an error while getting data',
-          })
+          of(
+            checkAuthErrorAction({
+              error: 'there is an error while getting data',
+            })
+          )
         )
-      )
       );
     },
     { dispatch: false }
   );
-
 
   adminRemoveProduct$ = createEffect(() => {
     return this.actions$.pipe(
@@ -139,7 +142,7 @@ export class ProductEffects {
       exhaustMap((actions) => {
         return this.productsService.removeProduct(actions.product.id).pipe(
           map(() => {
-            return removeProductsSuccessAction( {id: actions.product.id });
+            return removeProductsSuccessAction({ id: actions.product.id });
           }),
           catchError(() =>
             of(
@@ -152,5 +155,4 @@ export class ProductEffects {
       })
     );
   });
-
 }

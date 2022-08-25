@@ -15,10 +15,10 @@
     *ngFor="let item of shoppingCartItems$ | async; index as index"
   >
     <div class="cart-item">
-      <img src="{{ item.images }}" alt="{{ item.name }}" />
+      <img src="{{ item?.image }}" alt="{{ item.title }}" />
     </div>
     <div class="cart-item product-details">
-      <p class="product-name">{{ item.name }}</p>
+      <p class="product-name">{{ item.title }}</p>
       <p class="product-description">{{ item.description }}</p>
     </div>
     <div class="cart-item">{{ item.price | currency: "£" }}</div>

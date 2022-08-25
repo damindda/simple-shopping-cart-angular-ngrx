@@ -1,15 +1,33 @@
 <app-loading-spinner></app-loading-spinner>
-
-
 <div class="product-container">
-  <div class="product" *ngFor="let item of products$ | async; index as index;">
-    <img src="{{ item.images }}" alt="{{ item.name }}" />
-    <p class="product-name">{{ item.name }}</p>
+  <div class="product" *ngFor="let item of products$ | async; index as index">
+    <img src="{{ item?.image }}" alt="{{ item.title }}" />
     <p class="product-description">{{ item.description }}</p>
     <p class="product-price">{{ item.price | currency: "£" }}</p>
-    <button type="button" class="button button-primary" (click)="addToCart(item)" *ngIf="(currentUserRole$ | async) !== 'ADMIN'">Add to cart</button>
-    <button type="button" class="button button-danger" (click)="removeProduct(item)" *ngIf="(currentUserRole$ | async) === 'ADMIN'">Remove Product</button>
-    <button type="button" class="button button-primary" (click)="editProduct(item)" *ngIf="(currentUserRole$ | async) === 'ADMIN'">Edit Product</button>
+    <button
+      type="button"
+      class="button button-primary"
+      (click)="addToCart(item)"
+      *ngIf="(currentUserRole$ | async) !== 'ADMIN'"
+    >
+      Add to cart
+    </button>
+    <button
+      type="button"
+      class="button button-danger"
+      (click)="removeProduct(item)"
+      *ngIf="(currentUserRole$ | async) === 'ADMIN'"
+    >
+      Remove Product
+    </button>
+    <button
+      type="button"
+      class="button button-primary"
+      (click)="editProduct(item)"
+      *ngIf="(currentUserRole$ | async) === 'ADMIN'"
+    >
+      Edit Product
+    </button>
   </div>
 </div>
 
@@ -19,5 +37,4 @@
   [infiniteScrollDistance]="1"
   [infiniteScrollThrottle]="30"
   (scrolled)="onScrollDown()"
->
-</div>
+></div>

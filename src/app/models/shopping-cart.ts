@@ -1,14 +1,23 @@
 export interface Product {
   id: number,
-  name: string,
+  title: string,
+  category: Category,
   description: string,
-  defaultImage: string,
-  images: string[],
+  createdBy: CreatedBy,
+  image?: string,
   price: number,
-  discount: number,
-  qty?: number
-};
+  createdAt: string,
+  updatedAt: string
+}
+export interface Category {
+  name: string,
+  slug: string
+}
 
+export interface CreatedBy {
+  role: string,
+  name: string
+}
 export interface User {
   id: number,
   name: {
